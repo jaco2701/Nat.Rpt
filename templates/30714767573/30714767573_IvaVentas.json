@@ -1,0 +1,144 @@
+{
+  "lngCuitEmisor": "30710061447",
+  "strOutputFileName": "IvaVentas_30710061447_{0}.xlsx",
+  "coIvaColumnas": [
+    {
+      "strColName": "Fecha",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "dtmCbteFecha",
+      "strDefault": "0"
+    },
+    {
+      "strColName": "Razon Social",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "strRSReceptor",
+      "strDefault": "Consumidor Final Genérico"
+    },
+    {
+      "strColName": "CUIT",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "lngCuitReceptor",
+      "strDefault": "0"
+    },
+    {
+      "strColName": "Tratamiento Impositivo",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "strTipoRespReceptor",
+      "strDefault": "CF"
+    },
+    {
+      "strColName": "Tipo Comprobante",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "strCbteTipo",
+      "strDefault": "FB"
+    },
+    {
+      "strColName": "Nro",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "strCbteNro",
+      "strDefault": " "
+    },
+    {
+      "strColName": "CAE",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "strCAE",
+      "strDefault": ""
+    },
+    {
+      "strColName": "CodigoPostalCliente",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "",
+      "strDefault": " "
+    },
+    {
+      "strColName": "Fecha Vencimiento CAE",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "dtmCaeVenc",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "Provincia",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "strProvinciaRec",
+      "strDefault": ""
+    },
+    {
+      "strColName": "Localidad",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "strLocalidadReceptor",
+      "strDefault": "N/A"
+    },
+    {
+      "strColName": "Total Neto",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valNetoGravado",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "Total No Gravado",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valNetoNoGravado",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "Total Exento",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valExento",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "IVA 10,5%",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valIVA105",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "IVA 21%",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valIVA210",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "IVA 27%",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valIVA270",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "IVA 2,5%",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valIVA025",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "IVA 5%",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valIVA050",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "Percepcion IVA",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valPersIVA",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "Percepcion IIBB",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valPersIIBB",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "Otros Impuestos",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valOtros",
+      "strDefault": "-"
+    },
+    {
+      "strColName": "Total",
+      "strType": "Applet.Nat.BR.VolDocument",
+      "strPropName": "valImporteTotal",
+      "strDefault": "-"
+    }
+  ]
+}

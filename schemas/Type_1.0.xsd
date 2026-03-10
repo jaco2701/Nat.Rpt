@@ -1,0 +1,2292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="dummyResp" type="dummyRespType"/>
+	<xsd:complexType name="dummyRespType">
+		<xsd:sequence>
+			<xsd:element name="return" type="returnDummyRespType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="returnDummyRespType">
+		<xsd:sequence>
+			<xsd:element name="appserver" type="xsd:string"/>
+			<xsd:element name="authserver" type="xsd:string"/>
+			<xsd:element name="dbserver" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="liquidacionResp" type="LpgLiqRespType"/>
+	<xsd:complexType name="LpgLiqReturnType">
+		<xsd:sequence>
+			<xsd:element name="autorizacion" type="LpgLiquidacionRespType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Datos resultantes del procesamiento de
+								la o las liquidaciones
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="liquidacionReq" type="LpgLiqReqType"/>
+	<xsd:complexType name="DireccionType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo definido para expresar domicilios o direcciones</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Calle" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Calle</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Numero" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Número</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Piso" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Piso</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Depto" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Departamento</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Sector" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Sector</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Torre" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Torre</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Manzana" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Manzana</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Localidad" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Localidad</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Referencia" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Referencia</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Municipio" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Municipio</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Provincia" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Provincia</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Pais" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>País</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CP" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Código Postal</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="IIBBType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo definido para expresar domicilios o direcciones</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="IIBB" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Numero IIBB</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Condicion" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Municipio de IIBB</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AduanaType">
+		<xsd:annotation>
+			<xsd:documentation>Información de Aduana</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="NroDcto">
+				<xsd:annotation>
+					<xsd:documentation>Número de documento aduanero</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="25"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Ubicacion">
+				<xsd:annotation>
+					<xsd:documentation>Ubicación </xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="3"/>
+						<xsd:enumeration value="101"/>
+						<xsd:enumeration value="102"/>
+						<xsd:enumeration value="103"/>
+						<xsd:enumeration value="104"/>
+						<xsd:enumeration value="105"/>
+						<xsd:enumeration value="107"/>
+						<xsd:enumeration value="108"/>
+						<xsd:enumeration value="109"/>
+						<xsd:enumeration value="110"/>
+						<xsd:enumeration value="111"/>
+						<xsd:enumeration value="112"/>
+						<xsd:enumeration value="113"/>
+						<xsd:enumeration value="115"/>
+						<xsd:enumeration value="116"/>
+						<xsd:enumeration value="117"/>
+						<xsd:enumeration value="118"/>
+						<xsd:enumeration value="119"/>
+						<xsd:enumeration value="120"/>
+						<xsd:enumeration value="121"/>
+						<xsd:enumeration value="122"/>
+						<xsd:enumeration value="123"/>
+						<xsd:enumeration value="124"/>
+						<xsd:enumeration value="125"/>
+						<xsd:enumeration value="126"/>
+						<xsd:enumeration value="127"/>
+						<xsd:enumeration value="128"/>
+						<xsd:enumeration value="129"/>
+						<xsd:enumeration value="130"/>
+						<xsd:enumeration value="131"/>
+						<xsd:enumeration value="132"/>
+						<xsd:enumeration value="133"/>
+						<xsd:enumeration value="134"/>
+						<xsd:enumeration value="135"/>
+						<xsd:enumeration value="136"/>
+						<xsd:enumeration value="137"/>
+						<xsd:enumeration value="138"/>
+						<xsd:enumeration value="139"/>
+						<xsd:enumeration value="140"/>
+						<xsd:enumeration value="141"/>
+						<xsd:enumeration value="142"/>
+						<xsd:enumeration value="144"/>
+						<xsd:enumeration value="145"/>
+						<xsd:enumeration value="146"/>
+						<xsd:enumeration value="147"/>
+						<xsd:enumeration value="149"/>
+						<xsd:enumeration value="150"/>
+						<xsd:enumeration value="151"/>
+						<xsd:enumeration value="152"/>
+						<xsd:enumeration value="153"/>
+						<xsd:enumeration value="155"/>
+						<xsd:enumeration value="156"/>
+						<xsd:enumeration value="157"/>
+						<xsd:enumeration value="158"/>
+						<xsd:enumeration value="159"/>
+						<xsd:enumeration value="160"/>
+						<xsd:enumeration value="161"/>
+						<xsd:enumeration value="197"/>
+						<xsd:enumeration value="198"/>
+						<xsd:enumeration value="200"/>
+						<xsd:enumeration value="201"/>
+						<xsd:enumeration value="202"/>
+						<xsd:enumeration value="203"/>
+						<xsd:enumeration value="204"/>
+						<xsd:enumeration value="205"/>
+						<xsd:enumeration value="206"/>
+						<xsd:enumeration value="207"/>
+						<xsd:enumeration value="208"/>
+						<xsd:enumeration value="209"/>
+						<xsd:enumeration value="210"/>
+						<xsd:enumeration value="211"/>
+						<xsd:enumeration value="212"/>
+						<xsd:enumeration value="213"/>
+						<xsd:enumeration value="214"/>
+						<xsd:enumeration value="215"/>
+						<xsd:enumeration value="216"/>
+						<xsd:enumeration value="217"/>
+						<xsd:enumeration value="218"/>
+						<xsd:enumeration value="219"/>
+						<xsd:enumeration value="220"/>
+						<xsd:enumeration value="221"/>
+						<xsd:enumeration value="222"/>
+						<xsd:enumeration value="223"/>
+						<xsd:enumeration value="224"/>
+						<xsd:enumeration value="225"/>
+						<xsd:enumeration value="226"/>
+						<xsd:enumeration value="227"/>
+						<xsd:enumeration value="228"/>
+						<xsd:enumeration value="229"/>
+						<xsd:enumeration value="230"/>
+						<xsd:enumeration value="231"/>
+						<xsd:enumeration value="232"/>
+						<xsd:enumeration value="233"/>
+						<xsd:enumeration value="234"/>
+						<xsd:enumeration value="235"/>
+						<xsd:enumeration value="236"/>
+						<xsd:enumeration value="237"/>
+						<xsd:enumeration value="238"/>
+						<xsd:enumeration value="239"/>
+						<xsd:enumeration value="240"/>
+						<xsd:enumeration value="241"/>
+						<xsd:enumeration value="250"/>
+						<xsd:enumeration value="251"/>
+						<xsd:enumeration value="252"/>
+						<xsd:enumeration value="253"/>
+						<xsd:enumeration value="254"/>
+						<xsd:enumeration value="255"/>
+						<xsd:enumeration value="256"/>
+						<xsd:enumeration value="257"/>
+						<xsd:enumeration value="258"/>
+						<xsd:enumeration value="259"/>
+						<xsd:enumeration value="260"/>
+						<xsd:enumeration value="261"/>
+						<xsd:enumeration value="262"/>
+						<xsd:enumeration value="263"/>
+						<xsd:enumeration value="264"/>
+						<xsd:enumeration value="265"/>
+						<xsd:enumeration value="270"/>
+						<xsd:enumeration value="271"/>
+						<xsd:enumeration value="280"/>
+						<xsd:enumeration value="281"/>
+						<xsd:enumeration value="282"/>
+						<xsd:enumeration value="283"/>
+						<xsd:enumeration value="284"/>
+						<xsd:enumeration value="285"/>
+						<xsd:enumeration value="286"/>
+						<xsd:enumeration value="287"/>
+						<xsd:enumeration value="288"/>
+						<xsd:enumeration value="291"/>
+						<xsd:enumeration value="295"/>
+						<xsd:enumeration value="296"/>
+						<xsd:enumeration value="297"/>
+						<xsd:enumeration value="298"/>
+						<xsd:enumeration value="301"/>
+						<xsd:enumeration value="302"/>
+						<xsd:enumeration value="303"/>
+						<xsd:enumeration value="304"/>
+						<xsd:enumeration value="305"/>
+						<xsd:enumeration value="306"/>
+						<xsd:enumeration value="307"/>
+						<xsd:enumeration value="308"/>
+						<xsd:enumeration value="309"/>
+						<xsd:enumeration value="310"/>
+						<xsd:enumeration value="312"/>
+						<xsd:enumeration value="313"/>
+						<xsd:enumeration value="315"/>
+						<xsd:enumeration value="316"/>
+						<xsd:enumeration value="317"/>
+						<xsd:enumeration value="318"/>
+						<xsd:enumeration value="319"/>
+						<xsd:enumeration value="320"/>
+						<xsd:enumeration value="321"/>
+						<xsd:enumeration value="322"/>
+						<xsd:enumeration value="323"/>
+						<xsd:enumeration value="324"/>
+						<xsd:enumeration value="325"/>
+						<xsd:enumeration value="326"/>
+						<xsd:enumeration value="327"/>
+						<xsd:enumeration value="328"/>
+						<xsd:enumeration value="329"/>
+						<xsd:enumeration value="330"/>
+						<xsd:enumeration value="331"/>
+						<xsd:enumeration value="332"/>
+						<xsd:enumeration value="333"/>
+						<xsd:enumeration value="334"/>
+						<xsd:enumeration value="335"/>
+						<xsd:enumeration value="337"/>
+						<xsd:enumeration value="341"/>
+						<xsd:enumeration value="344"/>
+						<xsd:enumeration value="345"/>
+						<xsd:enumeration value="346"/>
+						<xsd:enumeration value="348"/>
+						<xsd:enumeration value="349"/>
+						<xsd:enumeration value="350"/>
+						<xsd:enumeration value="351"/>
+						<xsd:enumeration value="352"/>
+						<xsd:enumeration value="353"/>
+						<xsd:enumeration value="354"/>
+						<xsd:enumeration value="355"/>
+						<xsd:enumeration value="356"/>
+						<xsd:enumeration value="357"/>
+						<xsd:enumeration value="397"/>
+						<xsd:enumeration value="398"/>
+						<xsd:enumeration value="401"/>
+						<xsd:enumeration value="404"/>
+						<xsd:enumeration value="405"/>
+						<xsd:enumeration value="406"/>
+						<xsd:enumeration value="407"/>
+						<xsd:enumeration value="409"/>
+						<xsd:enumeration value="410"/>
+						<xsd:enumeration value="411"/>
+						<xsd:enumeration value="412"/>
+						<xsd:enumeration value="413"/>
+						<xsd:enumeration value="414"/>
+						<xsd:enumeration value="415"/>
+						<xsd:enumeration value="416"/>
+						<xsd:enumeration value="417"/>
+						<xsd:enumeration value="418"/>
+						<xsd:enumeration value="419"/>
+						<xsd:enumeration value="420"/>
+						<xsd:enumeration value="421"/>
+						<xsd:enumeration value="422"/>
+						<xsd:enumeration value="423"/>
+						<xsd:enumeration value="424"/>
+						<xsd:enumeration value="425"/>
+						<xsd:enumeration value="426"/>
+						<xsd:enumeration value="427"/>
+						<xsd:enumeration value="428"/>
+						<xsd:enumeration value="429"/>
+						<xsd:enumeration value="430"/>
+						<xsd:enumeration value="431"/>
+						<xsd:enumeration value="433"/>
+						<xsd:enumeration value="435"/>
+						<xsd:enumeration value="436"/>
+						<xsd:enumeration value="438"/>
+						<xsd:enumeration value="439"/>
+						<xsd:enumeration value="440"/>
+						<xsd:enumeration value="441"/>
+						<xsd:enumeration value="442"/>
+						<xsd:enumeration value="443"/>
+						<xsd:enumeration value="444"/>
+						<xsd:enumeration value="445"/>
+						<xsd:enumeration value="446"/>
+						<xsd:enumeration value="447"/>
+						<xsd:enumeration value="448"/>
+						<xsd:enumeration value="449"/>
+						<xsd:enumeration value="450"/>
+						<xsd:enumeration value="451"/>
+						<xsd:enumeration value="453"/>
+						<xsd:enumeration value="454"/>
+						<xsd:enumeration value="497"/>
+						<xsd:enumeration value="498"/>
+						<xsd:enumeration value="501"/>
+						<xsd:enumeration value="503"/>
+						<xsd:enumeration value="504"/>
+						<xsd:enumeration value="505"/>
+						<xsd:enumeration value="506"/>
+						<xsd:enumeration value="507"/>
+						<xsd:enumeration value="508"/>
+						<xsd:enumeration value="509"/>
+						<xsd:enumeration value="510"/>
+						<xsd:enumeration value="511"/>
+						<xsd:enumeration value="512"/>
+						<xsd:enumeration value="513"/>
+						<xsd:enumeration value="514"/>
+						<xsd:enumeration value="515"/>
+						<xsd:enumeration value="516"/>
+						<xsd:enumeration value="517"/>
+						<xsd:enumeration value="518"/>
+						<xsd:enumeration value="519"/>
+						<xsd:enumeration value="520"/>
+						<xsd:enumeration value="521"/>
+						<xsd:enumeration value="597"/>
+						<xsd:enumeration value="598"/>
+						<xsd:enumeration value="997"/>
+						<xsd:enumeration value="998"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NmbAduana" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Nombre de la aduana</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="60"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FechaDcto" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Fecha del documento aduanero</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ImpuestosType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo definido para expresar Impuestos</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="TipoImp">
+				<xsd:annotation>
+					<xsd:documentation>Tipo de impuesto</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="IVA"/>
+						<xsd:enumeration value="IIBB"/>
+						<xsd:enumeration value="IPM"/>
+						<xsd:enumeration value="III"/>
+						<xsd:enumeration value="IOE"/>
+						<xsd:enumeration value="OT"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TasaImp" type="PctType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Tasa de impuesto</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="CodTipoIva" type="CodTipoIVAType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+              Código de tipo IVA
+              1- No Gravado
+              2- Exento
+              3- 0%
+              4- 10,50%
+              5- 21%
+              6- 27%
+            </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="CodTipoTrib" type="CodTipoTribType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+              Código de tipo tributo
+              01- Impuestos nacionales
+              02- Impuestos provinciales
+              03- Impuestos municipales
+              04- Impuestos internos
+              99- Otros
+            </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="BaseImp" type="MontoType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Base imponible </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ImpteImp" type="MontoType">
+				<xsd:annotation>
+					<xsd:documentation>Importe del impuesto</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CodJurisImp" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Código de Jurisdicción </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DscJurisImp" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Jurisdicción de Impuestos Municipales </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Descripcion" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Descripción del tributo para el caso TipoImp = 99(Otros)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RetencionesType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo definido para expresar Retenciones</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="TipoRet">
+				<xsd:annotation>
+					<xsd:documentation>Tipo de retención</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="IVA"/>
+						<xsd:enumeration value="IIBB"/>
+						<xsd:enumeration value="IPM"/>
+						<xsd:enumeration value="III"/>
+						<xsd:enumeration value="IOB"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TasaRet" type="PctType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Tasa de retención</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ImpteRet" type="MontoType">
+				<xsd:annotation>
+					<xsd:documentation>Importe retenido</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CodJurisRet" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Código de Jurisdicción </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DscJurisRet" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Jurisdicción de Impuestos Municipales </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="MontoType172">
+		<xsd:annotation>
+			<xsd:documentation>Monto de 19 dígitos, 17 enteros, 2 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="19"/>
+			<xsd:fractionDigits value="2"/>
+			<xsd:minInclusive value="0.00"/>
+			<xsd:maxInclusive value="99999999999999999.99"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MontoType82">
+		<xsd:annotation>
+			<xsd:documentation>Monto de10 dígitos, 8 enteros, 2 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="10"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MontoType">
+		<xsd:annotation>
+			<xsd:documentation>Monto de 15 dígitos, 13 enteros, 2 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="15"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MontoType13">
+		<xsd:annotation>
+			<xsd:documentation>Monto de4 dígitos, 1 enteros, 3 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="4"/>
+			<xsd:fractionDigits value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MontoType1303">
+		<xsd:annotation>
+			<xsd:documentation>Monto de 16 dígitos, 13 enteros, 3 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="16"/>
+			<xsd:fractionDigits value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MontoType52">
+		<xsd:annotation>
+			<xsd:documentation>Monto de 7 dígitos, 5 enteros, 2 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="7"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="QuantityType">
+		<xsd:annotation>
+			<xsd:documentation>Monto de 12 dígitos, 7 enteros, 5 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="12"/>
+			<xsd:fractionDigits value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="FctConv">
+		<xsd:annotation>
+			<xsd:documentation>Monto de 10 dígitos, 4 enteros, 6 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="10"/>
+			<xsd:fractionDigits value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MontoType33">
+		<xsd:annotation>
+			<xsd:documentation>Monto de 6 dígitos, 3 enteros, 3 decimales</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="4"/>
+			<xsd:fractionDigits value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PrecioKgDiario">
+		<xsd:annotation>
+			<xsd:documentation>Monto de 11 dígitos, 3 enteros, 3 decimales Valores posibles desde 0.000 a 999.99999999 inclusive</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="11"/>
+			<xsd:fractionDigits value="8"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DTECodeType">
+		<xsd:annotation>
+			<xsd:documentation>Tipos de Documentos Tributarios Electrónicos</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:enumeration value="65"/>
+			<xsd:enumeration value="66"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LPGOperation">
+		<xsd:annotation>
+			<xsd:documentation>Tipos de Documentos Tributarios Electrónicos</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="CREDITO"/>
+			<xsd:enumeration value="DEBITO"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CUITType">
+		<xsd:annotation>
+			<xsd:documentation>Clave Unica de Identificación Tributaria</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:long">
+			<xsd:totalDigits value="11"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DIRcpType">
+		<xsd:annotation>
+			<xsd:documentation>Documento de Identidad del Receptor</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:long">
+			<xsd:totalDigits value="11"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PctType">
+		<xsd:annotation>
+			<xsd:documentation>Monto de Porcentaje ( 3 y 2)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="5"/>
+			<xsd:fractionDigits value="2"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TipoRespType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo de responsable tributario</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:byte">
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+			<xsd:enumeration value="4"/>
+			<xsd:enumeration value="5"/>
+			<xsd:enumeration value="6"/>
+			<xsd:enumeration value="7"/>
+			<xsd:enumeration value="8"/>
+			<xsd:enumeration value="9"/>
+			<xsd:enumeration value="10"/>
+			<xsd:enumeration value="11"/>
+			<xsd:enumeration value="12"/>
+			<xsd:enumeration value="13"/>
+			<xsd:enumeration value="14"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CodTipoIVAType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo de dato para el Código de tipo IVA</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:documentation>No Gravado</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="2">
+				<xsd:annotation>
+					<xsd:documentation>Exento</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="3">
+				<xsd:annotation>
+					<xsd:documentation>0%</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="4">
+				<xsd:annotation>
+					<xsd:documentation>10,50%</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="5">
+				<xsd:annotation>
+					<xsd:documentation>21%</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="6">
+				<xsd:annotation>
+					<xsd:documentation>27%</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CodTipoTribType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo de dato para el Código de tipo tributo</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:enumeration value="01">
+				<xsd:annotation>
+					<xsd:documentation>Impuestos nacionales</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="02">
+				<xsd:annotation>
+					<xsd:documentation>Impuestos provinciales</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="03">
+				<xsd:annotation>
+					<xsd:documentation>Impuestos municipales</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="04">
+				<xsd:annotation>
+					<xsd:documentation>Impuestos internos</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="99">
+				<xsd:annotation>
+					<xsd:documentation>Otros</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="LpgLiqReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="liquidacion" type="LpgLiquidacionBaseType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAuthType">
+		<xsd:sequence>
+			<xsd:element name="cuit" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLiquidacionBaseType">
+		<xsd:sequence>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="numeroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroActComprador" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codTipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Codigo del Tipo de Operacion.
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="esLiquidacionPropia" type="LpgSiNoType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Si es liquidacion propia, los datos del
+								comprador deben ser iguales a los datos
+								del vendedor. Solo informar cuando
+								liquida Comprador
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="esCanje" type="LpgEsCanjeType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Informar solo cuando el tipo de
+								operacion es 01 - Compra Venta
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codPuerto" type="LpgCodPuertoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="desPuertoLocalidad" type="LpgDesPuertoLocalidadType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="pesoNetoSinCertificado" type="LpgPesoNetoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codLocalidadProcedenciaSinCertificado" type="LpgCodLocProcedenciaType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codProvProcedenciaSinCertificado" type="LpgCodProvProcedenciaType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="actuaCorredor" type="LpgSiNoType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Determina si interviene un corredor en
+								la liquidacion. En caso afirmativo
+								informar cuit corredor, comision
+								corredor e ingresos brutos del corredor.
+								El ingreso bruto informar solo en los
+								casos en donde el que liquida sea el
+								corredor. Si liquida el comprador no
+								informar.
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="liquidaCorredor" type="LpgSiNoType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Determina si el que se encuentra
+								liquidando es el corredor. En caso de
+								ser el corredor quien esta liquidando,
+								los datos que lo identifican deben
+								coincidir con los datos del
+								representado.
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="comisionCorredor" type="LpgPorcType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="nroIngBrutoCorredor" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fechaPrecioOperacion" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="precioRefTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGradoRef" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codGradoEnt" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="valGradoEnt" type="LpgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="factorEnt" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="precioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="contProteico" type="LpgContProteicoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="alicIvaOperacion" type="LpgAlicuotaType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="campaniaPPal" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codLocalidadProcedencia" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Identifica la localidad de procedencia
+								del grano a liquidar.
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codProvProcedencia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="certificados" type="LpgArrCertType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrCertType">
+		<xsd:sequence>
+			<xsd:element name="certificado" type="LpgCertType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgCertType">
+		<xsd:annotation>
+			<xsd:documentation>Nro de certificado de deposito intransferible (F1116-A) o Nro de certificado de retiro y transferencias de granso certificados y no comercializados (F1116RT)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="tipoCertificadoDeposito" type="LpgTipoCertificadoDepType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+                				Tipo de certificado de deposito
+                			</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="nroCertificadoDeposito" type="LpgNroCertDepType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="pesoNeto" type="LpgPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="pesoNetoTotalCertificado" type="LpgPesoNetoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codLocalidadProcedencia" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codProvProcedencia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="fechaCierre" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLiquidacionRespType">
+		<xsd:sequence>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codTipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codTipoAjuste" type="LpgCodTipoAjusteType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Codigo del Tipo de Ajuste. Solo se
+								informa cuando obtenemos datos
+								resultantes de un ajuste. No se informa
+								el campo ante una liquidacion.
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="nroOpComercial" type="LpgNroOpComercialType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fechaLiquidacion" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="subTotal" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="operacionConIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalPesoNeto" type="LpgTotalPesoNetoType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Sumatoria de todos los pesos netos de
+								los certificados informados.
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deducciones" type="LpgArrDeduccionRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalDeduccion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalRetencion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalRetencionAfip" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalOtrasRetenciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalNetoAPagar" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalIvaRg2300_07" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalPagoSegunCondicion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="coe" type="xsd:long" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Codigo de operacion electronica
+								perteneciente al ajuste.
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="coeAjustado" type="xsd:long" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+								Codigo de operacion electronica
+								ajustado. Pertenece al codigo de la
+								operacion a la cual se le realiza el
+								ajuste.
+							</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="numeroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="estado" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrErrorType">
+		<xsd:sequence>
+			<xsd:element name="error" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrOpcionalType">
+		<xsd:sequence>
+			<xsd:element name="opcional" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrDeduccionType">
+		<xsd:sequence>
+			<xsd:element name="deduccion" type="LpgDeduccionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgDeduccionType">
+		<xsd:sequence>
+			<xsd:element name="codigoConcepto" type="LpgCodConceptoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="detalleAclaratorio" type="LpgDetalleDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="diasAlmacenaje" type="LpgDiasAlmacenajeType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="precioPKGdiario" type="LpgPrecioKgDiarioType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="comisionGastosAdm" type="LpgComisionGastosAdmType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="baseCalculo" type="LpgBaseCalculoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="alicuotaIva" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrRetencionType">
+		<xsd:sequence>
+			<xsd:element name="retencion" type="LpgRetencionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgRetencionType">
+		<xsd:sequence>
+			<xsd:element name="codigoConcepto" type="LpgCodConceptoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="detalleAclaratorio" type="LpgDetalleRetencionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="baseCalculo" type="LpgBaseCalculoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="alicuota" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroCertificadoRetencion" type="LpgNroCertRetType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fechaCertificadoRetencion" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeCertificadoRetencion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrEventoType">
+		<xsd:sequence>
+			<xsd:element name="evento" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgEventoType">
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="msg" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="provinciasReq" type="LpgProvinciasReqType"/>
+	<xsd:element name="provinciasResp" type="LpgProvinciasRespType"/>
+	<xsd:element name="tipoOperacionReq" type="LpgTipoOperacionReqType"/>
+	<xsd:element name="tipoOperacionResp" type="LpgTipoOperacionRespType"/>
+	<xsd:element name="puertoReq" type="LpgPuertoReqType"/>
+	<xsd:element name="puertoResp" type="LpgPuertoRespType"/>
+	<xsd:element name="tipoActividadReq" type="LpgTipoActividadReqType"/>
+	<xsd:element name="tipoActividadResp" type="LpgTipoActividadRespType"/>
+	<xsd:element name="tipoActividadRepresentadoReq" type="LpgTipoActividadReqType"/>
+	<xsd:element name="tipoActividadRepresentadoResp" type="LpgTipoActividadRespType"/>
+	<xsd:element name="tipoCertificadoDepReq" type="LpgTipoCertDepReqType"/>
+	<xsd:element name="tipoCertificadoDepResp" type="LpgTipoCertDepRespType"/>
+	<xsd:complexType name="LpgProvinciasReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgProvinciasReturnType">
+		<xsd:sequence>
+			<xsd:element name="provincias" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrCodigoDescripcionType">
+		<xsd:sequence>
+			<xsd:element name="codigoDescripcion" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgCodigoDescripcionType">
+		<xsd:sequence>
+			<xsd:element name="codigo" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="descripcion" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoRetencionReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoRetencionReturnType">
+		<xsd:sequence>
+			<xsd:element name="tiposRetencion" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoOperacionReturnType">
+		<xsd:sequence>
+			<xsd:element name="tiposOperacion" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoCertDepReturnType">
+		<xsd:sequence>
+			<xsd:element name="tiposCertDep" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoActividadReturnType">
+		<xsd:sequence>
+			<xsd:element name="tiposActividad" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoDeduccionReturnType">
+		<xsd:sequence>
+			<xsd:element name="tiposDeduccion" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoCertDepReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoActividadReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoOperacionReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroActLiquida" type="xsd:long" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Actividad identificada sobre el cuit que liquida. Puede ser actividad del comprador o del corredor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgPuertoReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgPuertoReturnType">
+		<xsd:sequence>
+			<xsd:element name="puertos" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrCodigoPostalType">
+		<xsd:sequence>
+			<xsd:element name="codigoPostal" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="tipoRetencionReq" type="LpgTipoRetencionReqType"/>
+	<xsd:complexType name="LpgTipoDeduccionReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="tipoRetencionResp" type="LpgTipoRetencionRespType"/>
+	<xsd:element name="tipoDeduccionReq" type="LpgTipoDeduccionReqType"/>
+	<xsd:element name="tipoDeduccionResp" type="LpgTipoDeduccionRespType"/>
+	<xsd:element name="tipoGranoReq" type="LpgTipoGranoReqType"/>
+	<xsd:element name="tipoGranoResp" type="LpgTipoGranoRespType"/>
+	<xsd:complexType name="LpgTipoGranoReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoGranoReturnType">
+		<xsd:sequence>
+			<xsd:element name="granos" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="gradoReferenciaReq" type="LpgGradoRefReqType"/>
+	<xsd:element name="gradoReferenciaResp" type="LpgGradoRefRespType"/>
+	<xsd:complexType name="LpgGradoRefReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgGradoRefReturnType">
+		<xsd:sequence>
+			<xsd:element name="gradosRef" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLiqConsReturnType">
+		<xsd:sequence>
+			<xsd:element name="liquidacion" type="LpgLiquidacionBaseType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="autorizacion" type="LpgLiquidacionRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="liqConsXCoeReq" type="LpgLiqConsXCoeReqType"/>
+	<xsd:element name="liqConsXCoeResp" type="LpgLiqConsRespType"/>
+	<xsd:complexType name="LpgLiqConsXCoeReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="coe" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="liqUltNroOrdenReq" type="LpgLiqUltNroOrdenReqType"/>
+	<xsd:element name="liqUltNroOrdenResp" type="LpgLiqUltNroOrdenRespType"/>
+	<xsd:complexType name="LpgLiqUltNroOrdenReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLiqUltNroOrdenReturnType">
+		<xsd:sequence>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgSiNoType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="S"/>
+			<xsd:enumeration value="N"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgPorcType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="2"/>
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="99.99"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgCuitType">
+		<xsd:restriction base="xsd:long">
+			<xsd:minExclusive value="9999999999"/>
+			<xsd:maxInclusive value="99999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgGradoValorType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="8"/>
+			<xsd:maxInclusive value="1.99999999"/>
+			<xsd:minExclusive value="0.00000000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgGradoCodigoType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgIbType">
+		<xsd:restriction base="xsd:long">
+			<xsd:maxInclusive value="999999999999999"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="LpgLiqRespType">
+		<xsd:sequence>
+			<xsd:element name="liqReturn" type="LpgLiqReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgProvinciasRespType">
+		<xsd:sequence>
+			<xsd:element name="provinciasReturn" type="LpgProvinciasReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoOperacionRespType">
+		<xsd:sequence>
+			<xsd:element name="tipoOperacionReturn" type="LpgTipoOperacionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgPuertoRespType">
+		<xsd:sequence>
+			<xsd:element name="puertoReturn" type="LpgPuertoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoActividadRespType">
+		<xsd:sequence>
+			<xsd:element name="tipoActividadReturn" type="LpgTipoActividadReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoCertDepRespType">
+		<xsd:sequence>
+			<xsd:element name="tipoCertDepReturn" type="LpgTipoCertDepReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoRetencionRespType">
+		<xsd:sequence>
+			<xsd:element name="tipoRetencionReturn" type="LpgTipoRetencionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoDeduccionRespType">
+		<xsd:sequence>
+			<xsd:element name="tipoDeduccionReturn" type="LpgTipoDeduccionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTipoGranoRespType">
+		<xsd:sequence>
+			<xsd:element name="tipoGranoReturn" type="LpgTipoGranoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgGradoRefRespType">
+		<xsd:sequence>
+			<xsd:element name="gradoRefReturn" type="LpgGradoRefReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLiqConsRespType">
+		<xsd:sequence>
+			<xsd:element name="liqConsReturn" type="LpgLiqConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLiqUltNroOrdenRespType">
+		<xsd:sequence>
+			<xsd:element name="liqUltNroOrdenReturn" type="LpgLiqUltNroOrdenReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrDeduccionRespType">
+		<xsd:sequence>
+			<xsd:element name="deduccionReturn" type="LpgDeduccionReturnType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgDeduccionReturnType">
+		<xsd:sequence>
+			<xsd:element name="deduccion" type="LpgDeduccionType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="importeDeduccion" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrRetencionRespType">
+		<xsd:sequence>
+			<xsd:element name="retencionReturn" type="LpgRetencionReturnType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgRetencionReturnType">
+		<xsd:sequence>
+			<xsd:element name="retencion" type="LpgRetencionType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="importeRetencion" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="campaniasConsultar">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="in" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="campaniasConsultarResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="campaniaReq" type="LpgCampaniaReqType"/>
+	<xsd:element name="campaniaResp" type="LpgCampaniaRespType"/>
+	<xsd:complexType name="LpgCampaniaReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgCampaniaRespType">
+		<xsd:sequence>
+			<xsd:element name="campaniaReturn" type="LpgCampaniaReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgCampaniaReturnType">
+		<xsd:sequence>
+			<xsd:element name="campanias" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgEsCanjeType">
+		<xsd:annotation>
+			<xsd:documentation>P - Canje Parcial
+T - Canje Total
+N - No es canje
+</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="P"/>
+			<xsd:enumeration value="T"/>
+			<xsd:enumeration value="N"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgNroCertDepType">
+		<xsd:restriction base="xsd:long">
+			<xsd:maxInclusive value="999999999999"/>
+			<xsd:minExclusive value="100000000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgPesoNetoType">
+		<xsd:restriction base="xsd:long">
+			<xsd:maxInclusive value="99999999"/>
+			<xsd:minExclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgCampaniaType">
+		<xsd:restriction base="xsd:long">
+			<xsd:maxInclusive value="9999"/>
+			<xsd:minInclusive value="203"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgCodLocProcedenciaType">
+		<xsd:restriction base="xsd:long">
+			<xsd:minExclusive value="0"/>
+			<xsd:maxInclusive value="999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgCodProvProcedenciaType">
+		<xsd:restriction base="xsd:short">
+			<xsd:maxInclusive value="99"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgPrecioRefTnType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="3"/>
+			<xsd:maxInclusive value="99999.999"/>
+			<xsd:minInclusive value="0.000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgCodPuertoType">
+		<xsd:restriction base="xsd:long">
+			<xsd:minExclusive value="0"/>
+			<xsd:maxInclusive value="9999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgDatosAdicionalesType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="400"/>
+			<xsd:minLength value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgPrecioFleteTnType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="2"/>
+			<xsd:maxInclusive value="99999.99"/>
+			<xsd:minInclusive value="0.00"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgFactorEntType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="8"/>
+			<xsd:minExclusive value="0.00000000"/>
+			<xsd:maxInclusive value="999.99999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgContProteicoType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="3"/>
+			<xsd:maxInclusive value="999.999"/>
+			<xsd:minInclusive value="0.000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgComisionGastosAdmType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="2"/>
+			<xsd:maxInclusive value="99.99"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgDetalleDeduccionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgBaseCalculoType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="2"/>
+			<xsd:maxInclusive value="99999999.99"/>
+			<xsd:minInclusive value="0.00"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgDiasAlmacenajeType">
+		<xsd:restriction base="xsd:long">
+			<xsd:maxInclusive value="9999"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgPrecioKgDiarioType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="8"/>
+			<xsd:maxInclusive value="999.99999999"/>
+			<xsd:minInclusive value="0.000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgDetalleRetencionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgAlicuotaType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="4"/>
+			<xsd:maxInclusive value="100"/>
+			<xsd:minInclusive value="0.0000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgCodTipoOperacionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgNroOpComercialType">
+		<xsd:restriction base="xsd:long">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="9999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgTotalPesoNetoType">
+		<xsd:restriction base="xsd:long">
+			<xsd:maxInclusive value="99999999"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="liquidacionXNroOrdenConsultar">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="in" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="liquidacionXNroOrdenConsultarResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="liqConsXNroOrdenReq" type="LpgLiqConsXNroOrdenReqType"/>
+	<xsd:element name="liqConsXNroOrdenResp" type="LpgLiqConsRespType"/>
+	<xsd:complexType name="LpgLiqConsXNroOrdenReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="localidadXProvinciaConsultar">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="in" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="localidadXProvinciaConsultarResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="localidadReq" type="LpgLocalidadReqType"/>
+	<xsd:element name="localidadResp" type="LpgLocalidadesRespType"/>
+	<xsd:complexType name="LpgLocalidadReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codProvincia" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLocalidadesRespType">
+		<xsd:sequence>
+			<xsd:element name="localidadesReturn" type="LpgLocalidadesReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLocalidadesReturnType">
+		<xsd:sequence>
+			<xsd:element name="localidades" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgActividadType">
+		<xsd:restriction base="xsd:long">
+			<xsd:maxInclusive value="99999"/>
+			<xsd:minExclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgCodigoGranoType">
+		<xsd:restriction base="xsd:long">
+			<xsd:maxInclusive value="999"/>
+			<xsd:minExclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgImporte_17_2_Type">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="2"/>
+			<xsd:maxInclusive value="99999999999999999.99"/>
+			<xsd:minInclusive value="0.00"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="gradoEntregadoReq" type="LpgGradoEntReqType"/>
+	<xsd:element name="gradoEntregadoResp" type="LpgGradoEntRespType"/>
+	<xsd:complexType name="LpgGradoEntReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+            					Codigo del grano
+            				</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgGradoEntRespType">
+		<xsd:sequence>
+			<xsd:element name="gradoEntReturn" type="LpgGradoEntReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgGradoEntReturnType">
+		<xsd:sequence>
+			<xsd:element name="gradoEnt" type="LpgArrGradoEntType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrGradoEntType">
+		<xsd:sequence>
+			<xsd:element name="gradoEnt" type="LpgGradoEntType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgGradoEntType">
+		<xsd:sequence>
+			<xsd:element name="codigoDescripcion" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="valor" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajusteReq" type="LpgAjusteReqType"/>
+	<xsd:element name="ajusteResp" type="LpgAjusteRespType"/>
+	<xsd:complexType name="LpgAjusteReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajuste" type="LpgAjusteBaseType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteRespType">
+		<xsd:sequence>
+			<xsd:element name="ajusteReturn" type="LpgLiqReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteBaseType">
+		<xsd:sequence>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="coeAjustado" type="xsd:long" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+            					COE que se va a ajustar
+            				</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codTipoAjuste" type="LpgCodTipoAjusteType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+            					Liquidacion de debito o Liquidacion de
+            					credito.
+            				</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="diferenciaPesoNeto" type="LpgTotalPesoNetoType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+            					Peso neto total a ajustar
+            				</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="diferenciaPrecioOperacion" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="valGrado" type="LpgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="factor" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="diferenciaPrecioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="certificados" type="LpgArrCertType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgCodTipoAjusteType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgDesPuertoLocalidadType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="240"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgImporte_17_3_Type">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="3"/>
+			<xsd:minInclusive value="0.000"/>
+			<xsd:maxInclusive value="99999999999999999.999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgTipoCertificadoDepType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgCodConceptoType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgNroCertRetType">
+		<xsd:restriction base="xsd:long">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="99999999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="anulacionReq" type="LpgAnulacionReqType"/>
+	<xsd:element name="anulacionResp" type="LpgAnulacionRespType"/>
+	<xsd:complexType name="LpgAnulacionReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="coe" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAnulacionRespType">
+		<xsd:sequence>
+			<xsd:element name="anulacionReturn" type="LpgAnulacionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAnulacionReturnType">
+		<xsd:sequence>
+			<xsd:element name="coe" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="resultado" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgPtoEmision">
+		<xsd:restriction base="xsd:long">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="9999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="liquidacionAjustarPapelResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ajustePapelReq" type="LpgAjustePapelReqType"/>
+	<xsd:complexType name="LpgAjustePapelReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajustePapelBase" type="LpgAjustePapelBaseType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjustePapelBaseType">
+		<xsd:sequence>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="tipoFormulario" type="LpgTipoFormularioType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroFormulario" type="LpgNroCertDepType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="actividad" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="tipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="tipoAjuste" type="lpgTipoAjustePapelType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="certificados" type="LpgArrCertType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codProvincia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="lpgTipoAjustePapelType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgTipoFormularioType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:element name="ajustePapelResp" type="LpgAjustePapelRespType"/>
+	<xsd:complexType name="LpgAjustePapelRespType">
+		<xsd:sequence>
+			<xsd:element name="ajustePapelReturn" type="LpgLiqReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajustarUnificadoReq" type="LpgAjusteUnificadoReqType"/>
+	<xsd:element name="NewOperationResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="liquidacionAjustarUnificadoResponse1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="LpgAjusteUnificadoReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajusteBase" type="LpgAjusteUnifBaseType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajusteCredito" type="LpgAjusteCreditoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ajusteDebito" type="LpgAjusteDebitoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgNroContrato">
+		<xsd:restriction base="xsd:long"/>
+	</xsd:simpleType>
+	<xsd:complexType name="LpgAjusteUnifBaseType">
+		<xsd:sequence>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="coeAjustado" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="certificados" type="LpgArrCertType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codProv" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteCreditoType">
+		<xsd:sequence>
+			<xsd:element name="diferenciaPesoNeto" type="LpgDiferenciaPesoNetoType"/>
+			<xsd:element name="diferenciaPrecioOperacion" type="LpgPrecioRefTnType"/>
+			<xsd:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0"/>
+			<xsd:element name="valGrado" type="LpgGradoValorType" minOccurs="0"/>
+			<xsd:element name="factor" type="LpgFactorEntType" minOccurs="0"/>
+			<xsd:element name="diferenciaPrecioFleteTn" type="LpgPrecioFleteTnType"/>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0"/>
+			<xsd:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteCreditoType2">
+		<xsd:sequence>
+			<xsd:element name="diferenciaPesoNeto" type="LpgDiferenciaPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="diferenciaPrecioOperacion" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="valGrado" type="LpgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="factor" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="diferenciaPrecioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="opcionalesCredito" type="LpgCodigoDescripcionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteDebitoType">
+		<xsd:sequence>
+			<xsd:element name="diferenciaPesoNeto" type="LpgDiferenciaPesoNetoType"/>
+			<xsd:element name="diferenciaPrecioOperacion" type="LpgPrecioRefTnType"/>
+			<xsd:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0"/>
+			<xsd:element name="valGrado" type="LpgGradoValorType" minOccurs="0"/>
+			<xsd:element name="factor" type="LpgFactorEntType" minOccurs="0"/>
+			<xsd:element name="diferenciaPrecioFleteTn" type="LpgPrecioFleteTnType"/>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0"/>
+			<xsd:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteDebitoType2">
+		<xsd:sequence>
+			<xsd:element name="diferenciaPesoNeto" type="LpgDiferenciaPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="diferenciaPrecioOperacion" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="valGrado" type="LpgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="factor" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="diferenciaPrecioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="opcionalesDebito" type="LpgCodigoDescripcionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgImporte11_2Type">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:maxExclusive value="99999999999.99"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="LpgAjusteUnificadoReturnType">
+		<xsd:sequence>
+			<xsd:element name="ajusteUnificado" type="LpgAjusteUnificadoRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteUnificadoRespType">
+		<xsd:sequence>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="coeAjustado" type="xsd:long" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codTipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajusteCreditoAut" type="LpgAjusteCreditoRespType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajusteDebitoAut" type="LpgAjusteDebitoRespType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="totalesUnificados" type="LpgTotalesUnifcadosType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="coe" type="xsd:long" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+            					Codigo de operacion electronica
+            					perteneciente al ajuste.
+            				</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="estado" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjustarUnificadoRespType">
+		<xsd:sequence>
+			<xsd:element name="ajusteUnifReturn" type="LpgAjusteUnificadoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajustarUnificadoResp" type="LpgAjustarUnificadoRespType"/>
+	<xsd:complexType name="LpgAjusteCreditoRespType">
+		<xsd:sequence>
+			<xsd:element name="nroOpComercial" type="LpgNroOpComercialType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fechaLiquidacion" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="subTotal" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="operacionConIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalPesoNeto" type="LpgTotalPesoNetoType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+            					Sumatoria de todos los pesos netos de
+            					los certificados informados.
+            				</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="importes" type="LpgArrImportesType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="deducciones" type="LpgArrDeduccionRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalDeduccion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalRetencion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalRetencionAfip" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalOtrasRetenciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalNetoAPagar" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalIvaRg2300_07" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalPagoSegunCondicion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteDebitoRespType">
+		<xsd:sequence>
+			<xsd:element name="nroOpComercial" type="LpgNroOpComercialType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fechaLiquidacion" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="subTotal" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="operacionConIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalPesoNeto" type="LpgTotalPesoNetoType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+            					Sumatoria de todos los pesos netos de
+            					los certificados informados.
+            				</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="importes" type="LpgArrImportesType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="deducciones" type="LpgArrDeduccionRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalDeduccion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalRetencion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalRetencionAfip" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalOtrasRetenciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalNetoAPagar" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalIvaRg2300_07" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totalPagoSegunCondicion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgTotalesUnifcadosType">
+		<xsd:sequence>
+			<xsd:element name="subTotalDebCred" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="totalBaseDeducciones" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="subTotalGeneral" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ivaDeducciones" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="iva105" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="iva21" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="retencionesGanancias" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="retencionesIVA" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="importeOtrasRetenciones" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="importeNeto" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ivaRG2300_2007" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="pagoSCondicion" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgDifPesoNetoType">
+		<xsd:restriction base="xsd:long"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgConceptoImporteType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="200"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="LpgArrImportesType">
+		<xsd:sequence>
+			<xsd:element name="importeReturn" type="LpgImportesNetoAjustadoType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgImportesNetoAjustadoType">
+		<xsd:sequence>
+			<xsd:element name="importe" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="concepto" type="LpgConceptoImporteType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="alicuota" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ivaCalculado" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajustarContratoReq" type="LpgAjusteContratoReqType"/>
+	<xsd:element name="liquidacionAjustarContratoResponse1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="LpgAjusteContratoReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajusteBase" type="LpgAjusteContratoBaseType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajusteCredito" type="LpgAjustePorImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ajusteDebito" type="LpgAjustePorImporteType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteContratoBaseType">
+		<xsd:sequence>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="certificados" type="LpgArrCertType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="actividad" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="precioRefTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGradoEnt" type="LpgGradoCodigoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="valGradoEnt" type="LpgGradoValorType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="precioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codPuerto" type="LpgCodPuertoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="desPuertoLocalidad" type="LpgDesPuertoLocalidadType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codProv" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjustePorImporteType">
+		<xsd:sequence>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0"/>
+			<xsd:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0"/>
+			<xsd:element name="retenciones" type="LpgArrRetencionType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjustePorImporteTypeCredito2">
+		<xsd:sequence>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0"/>
+			<xsd:element name="opcionalesCredito" type="LpgArrOpcionalType" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0"/>
+			<xsd:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjustePorImporteTypeDebito2">
+		<xsd:sequence>
+			<xsd:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="opcionalesDebito" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajustarContratoResp" type="LpgAjustarContratoRespType"/>
+	<xsd:complexType name="LpgAjustarContratoRespType">
+		<xsd:sequence>
+			<xsd:element name="ajusteContratoReturn" type="LpgAjusteContratoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteContratoReturnType">
+		<xsd:sequence>
+			<xsd:element name="ajusteContrato" type="LpgAjusteUnificadoRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajustarUnificadoPapelReq" type="LpgAjusteUnificadoPapelReqType"/>
+	<xsd:element name="liquidacionAjustarUnificadoPapelResponse1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="LpgAjusteUnificadoPapelReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajusteBase" type="LpgAjustePapelUnifBaseType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ajusteCredito" type="LpgAjustePorImporteType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ajusteDebito" type="LpgAjustePorImporteType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjustePapelUnifBaseType">
+		<xsd:sequence>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="tipoFormulario" type="LpgTipoFormularioType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroFormulario" type="LpgNroCertDepType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="actividad" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="tipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="certificados" type="LpgArrCertType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="comisionCorredor" type="LpgPorcType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="nroIngBrutoCorredor" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codProvincia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajustarUnificadoPapelResp" type="LpgAjustarUnificadoPapelRespType"/>
+	<xsd:complexType name="LpgAjustarUnificadoPapelRespType">
+		<xsd:sequence>
+			<xsd:element name="ajustePapelReturn" type="LpgAjustePapelUnifReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjustePapelUnifReturnType">
+		<xsd:sequence>
+			<xsd:element name="ajustePapel" type="LpgAjusteUnificadoRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LpgNumeroContratoType">
+		<xsd:restriction base="xsd:integer">
+			<xsd:maxInclusive value="999999999999999"/>
+			<xsd:minExclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgImporte11_2LibreType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:minExclusive value="-99999999999.99"/>
+			<xsd:maxExclusive value="99999999999.99"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LpgDiferenciaPesoNetoType">
+		<xsd:restriction base="xsd:long">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxExclusive value="99999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="ajusteXCoeConsReq" type="LpgAjusteXcoeConsReqType"/>
+	<xsd:element name="AjusteXCoeConsultarResponse1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="out" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="LpgAjusteXcoeConsReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="coe" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajusteXcoeConsResp" type="LpgAjusteXcoeConsRespType"/>
+	<xsd:complexType name="LpgAjusteXcoeConsRespType">
+		<xsd:sequence>
+			<xsd:element name="ajusteConsReturn" type="LpgAjusteConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteConsReturnType">
+		<xsd:sequence>
+			<xsd:element name="ajusteUnificado" type="LpgAjusteUnificadoRespType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="asociarLiqAContratoReq" type="LpgAsociarLiqAContratoReqType"/>
+	<xsd:complexType name="LpgAsociarLiqAContratoReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="coe" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="asociarLiqAContratoResp" type="LpgAsociarLiqAContratoRespType"/>
+	<xsd:complexType name="LpgAsociarLiqAContratoRespType">
+		<xsd:sequence>
+			<xsd:element name="liquidacion" type="LpgLiqConsReturnType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="liquidacionPorContratoConsultarReq" type="LpgLiqPorContratoConsReqType"/>
+	<xsd:element name="liquidacionPorContratoConsultarResp" type="LpgLiqPorContratoConsRespType"/>
+	<xsd:complexType name="LpgLiqPorContratoConsRespType">
+		<xsd:sequence>
+			<xsd:element name="liqPorContratoCons" type="LpgLiqPorContratoConsReturnType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLiqPorContratoConsReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgLiqPorContratoConsReturnType">
+		<xsd:sequence>
+			<xsd:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="coeRelacionados" type="LpgArrCoeType" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgArrCoeType">
+		<xsd:sequence>
+			<xsd:element name="coe" type="xsd:long" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajustePorContratoConsultarReq" type="LpgAjustePorContratoReqType"/>
+	<xsd:element name="ajustePorContratoConsultarResp" type="LpgAjustePorContratoConsultarRespType"/>
+	<xsd:complexType name="LpgAjustePorContratoReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjustePorContratoConsultarRespType">
+		<xsd:sequence>
+			<xsd:element name="ajusteContratoReturn" type="LpgAjusteConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ajusteXNroOrdenConsReq" type="LpgAjusteXNroOrdenConsReqType"/>
+	<xsd:element name="ajusteXNroOrdenConsResp" type="LpgAjusteXNroOrdenRespType"/>
+	<xsd:complexType name="LpgAjusteXNroOrdenConsReqType">
+		<xsd:sequence>
+			<xsd:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nroOrden" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LpgAjusteXNroOrdenRespType">
+		<xsd:sequence>
+			<xsd:element name="ajusteXNroOrdenConsReturn" type="LpgAjusteConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

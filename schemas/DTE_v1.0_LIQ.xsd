@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Rodrigo (EMBRACE) -->
+<!-- edited with XMLSPY v5 U (http://www.xmlspy.com) by Registred (Registred) -->
+<!-- Esquema XML extendido para la generacion de Comprobantes Fiscales Digitales - Fecha Actualizacion 2004-04-26 -->
+<xs:schema xmlns="http://www.afip.com.ar/fe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.afip.com.ar/fe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="DTETypes_LIQ.xsd"/>
+	<xs:element name="DTE" type="DTEType_LIQ">
+		<xs:annotation>
+			<xs:documentation>Contiene información referente a los datos básicos de una liquidación.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

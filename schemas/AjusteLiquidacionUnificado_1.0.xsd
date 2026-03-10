@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Type_1.0.xsd"/>
+	<xs:element name="AjusteLiquidacionUnificado">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Documento">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Encabezado">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IdDoc">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="LpgAjusteUnifBaseType">
+														<xs:sequence>
+															<xs:element name="Tipo" type="DTECodeType">
+																<xs:annotation>
+																	<xs:documentation>Tipo de documento Alfanumérico de un total de 2 caracteres (máximo).</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="Serie">
+																<xs:annotation>
+																	<xs:documentation>la serie corresponde al punto de emisión, el cual permite que cada cliente del webservice, identifique los puestos por los que emitirá solicitudes de autorización. Estos pueden ser o no correlativos.</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:int">
+																		<xs:minInclusive value="1"/>
+																		<xs:maxInclusive value="9998"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="FechaEmision" type="xs:date"/>
+														</xs:sequence>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Emisor">
+											<xs:annotation>
+												<xs:documentation>Datos del emisor del documento</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CUITEmi" type="CUITType">
+														<xs:annotation>
+															<xs:documentation>CUIT del emisor</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="NmbEmi">
+														<xs:annotation>
+															<xs:documentation>Nombre del emisor</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Receptor">
+											<xs:annotation>
+												<xs:documentation>Datos del receptor del documento</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CUITRecep" type="CUITType">
+														<xs:annotation>
+															<xs:documentation>CUIT del contribuyente identificado como comprador</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="NmbRcp">
+														<xs:annotation>
+															<xs:documentation>Nombre del contribuyente identificado como comprador</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="100"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ajusteCredito" type="LpgAjusteCreditoType2" minOccurs="0"/>
+										<xs:element name="ajusteDebito" type="LpgAjusteDebitoType2" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Detalle" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Deduccion" type="LpgDeduccionType" minOccurs="0"/>
+										<xs:element name="Retencion" type="LpgRetencionType" minOccurs="0"/>
+										<xs:element name="Operacion" type="LPGOperation"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TimeStamp" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation>Fecha y hora de generación del documento</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Id" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Autorizacion" type="LpgAjusteUnificadoRespType" minOccurs="0"/>
+				<xs:element name="Extensions" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Extensiones</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Extension">
+								<xs:annotation>
+									<xs:documentation>Elementos Extendidos</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="StringField" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Elemento Extendido Alfanumerico</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="name" type="xs:string"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="NumericField" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Elemento Extendido Numerico</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:decimal">
+														<xs:attribute name="name" type="xs:string"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DateField" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Elemento Extendido Fecha</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:date">
+														<xs:attribute name="name" type="xs:string"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DetailExtension" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Elementos Extendidos Detalle</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DetExtNroItem" type="xs:positiveInteger">
+														<xs:annotation>
+															<xs:documentation>Número de Línea de Detalle asociada a los elementos extendidos</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_01" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #01</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_02" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #02</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_03" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #03</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_04" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #04</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_05" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #05</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_06" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #06</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_07" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #07</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_08" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #08</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_09" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #09</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_10" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #10</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_11" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #11</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_12" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #12</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_13" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #13</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_14" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #14</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtAFN_15" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Alfanumerico #15</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_01" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #01</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_02" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #02</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_03" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #03</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_04" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #04</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_05" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #05</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_06" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #06</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_07" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #07</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_08" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #08</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_09" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #09</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_10" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #10</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_11" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #11</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_12" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #12</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_13" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #13</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_14" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #14</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUE_15" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Entero #15</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_01" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #01</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_02" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #02</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_03" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #03</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_04" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #04</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_05" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #05</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_06" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #06</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_07" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #07</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_08" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #08</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_09" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #09</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_10" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #10</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_11" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #11</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_12" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #12</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_13" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #13</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_14" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #14</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtNUD_15" type="xs:decimal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Numerico Decimal #15</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_01" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #01</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_02" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #02</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_03" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #03</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_04" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #04</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_05" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #05</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_06" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #06</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_07" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #07</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_08" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #08</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_09" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #09</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_10" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #10</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_11" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #11</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_12" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #12</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_13" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #13</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_14" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #14</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DetExtFEC_15" type="xs:date" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Elemento extendido detalle Fecha #15</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="dteId" type="xs:IDREF" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

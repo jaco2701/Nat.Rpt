@@ -1,0 +1,505 @@
+{
+  "ivlngCuitEmisor": "30710061447",
+  "ivstrOutputTemplate": "FELocaLoteV1.xml",
+  "ivnroCbtetipo": "6",
+  "ivstrDocSpliter": "C",
+  "ivstrSeccionSpliter": "\n",
+  "ivnumMaxLongitudNombreCampo": "2000",
+  "ivstrtxtType": "vol",
+  "coSecciones": [
+    {
+      "ivstrNombreSeccion": "DATOS DEL DOCUMENTO",
+      "ivstrTipoSeccion": "C",
+      "ivstrXpath": "Applet.Nat.BR.VolDocument",
+      "coCampos": [
+        {
+          "ivstrNombreCampo": "TipoDoc",
+          "ivnumOffset": "1",
+          "ivnumLen": "3",
+          "ivstrXpath": "nroCbteTipo",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "NumeroPuntoVenta",
+          "ivnumOffset": "4",
+          "ivnumLen": "5",
+          "ivstrXpath": "lngPtoVta",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "NumeroComprobante",
+          "ivnumOffset": "9",
+          "ivnumLen": "8",
+          "ivstrXpath": "lngCbteNro",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "CodigoConcepto",
+          "ivnumOffset": "17",
+          "ivnumLen": "1",
+          "ivstrXpath": "nroConcepto",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Fecha",
+          "ivnumOffset": "18",
+          "ivnumLen": "8",
+          "ivstrXpath": "dtmCbteFecha",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "FechaServicioDesde",
+          "ivnumOffset": "26",
+          "ivnumLen": "8",
+          "ivstrXpath": "dtmCbteServDesde",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "FechaServicioHasta",
+          "ivnumOffset": "34",
+          "ivnumLen": "8",
+          "ivstrXpath": "dtmCbteServHasta",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "FechaVencimientoPago",
+          "ivnumOffset": "42",
+          "ivnumLen": "8",
+          "ivstrXpath": "dtmVtoPago",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "FormaPago",
+          "ivnumOffset": "50",
+          "ivnumLen": "50",
+          "ivstrXpath": "strCondPago",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "ImporteTotal",
+          "ivnumOffset": "100",
+          "ivnumLen": "15",
+          "ivstrXpath": "valImporteTotal",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "ImporteGravado",
+          "ivnumOffset": "115",
+          "ivnumLen": "15",
+          "ivstrXpath": "valNetoGravado",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "ImporteNoGravado",
+          "ivnumOffset": "130",
+          "ivnumLen": "15",
+          "ivstrXpath": "valNetoNoGravado",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "ImporteExento",
+          "ivnumOffset": "145",
+          "ivnumLen": "15",
+          "ivstrXpath": "valExento",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "ImporteIVA",
+          "ivnumOffset": "160",
+          "ivnumLen": "15",
+          "ivstrXpath": "valIVA",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "ImporteOtrosTributos",
+          "ivnumOffset": "175",
+          "ivnumLen": "15",
+          "ivstrXpath": "valOtrosTributos",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "CodigoMoneda",
+          "ivnumOffset": "190",
+          "ivnumLen": "3",
+          "ivstrXpath": "strMonid",
+          "ivstrdefault": "PES"
+        },
+        {
+          "ivstrNombreCampo": "CotizacionMoneda",
+          "ivnumOffset": "193",
+          "ivnumLen": "15",
+          "ivstrXpath": "valMonCotiz",
+          "ivstrdefault": "100",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "ImportePalabras",
+          "ivnumOffset": "208",
+          "ivnumLen": "50",
+          "ivstrXpath": "strImportePalabras",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "CBU",
+          "ivnumOffset": "258",
+          "ivnumLen": "22",
+          "ivstrXpath": "strCBU",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "AliasCBU",
+          "ivnumOffset": "280",
+          "ivnumLen": "30",
+          "ivstrXpath": "strAliasCBU",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "OpcionDeTransfencia",
+          "ivnumOffset": "310",
+          "ivnumLen": "3",
+          "ivstrXpath": "strOpcionTrf",
+          "ivstrdefault": ""
+        }
+      ]
+    },
+    {
+      "ivstrNombreSeccion": "DATOS DEL EMISOR",
+      "ivstrTipoSeccion": "E",
+      "ivstrXpath": "Applet.Nat.BR.VolDocument",
+      "coCampos": [
+        {
+          "ivstrNombreCampo": "TipoResp",
+          "ivnumOffset": "1",
+          "ivnumLen": "2",
+          "ivstrXpath": "nroTiporespEmisor",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "RsocialE",
+          "ivnumOffset": "3",
+          "ivnumLen": "50",
+          "ivstrXpath": "strRSEmisor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "DomicilioE",
+          "ivnumOffset": "53",
+          "ivnumLen": "50",
+          "ivstrXpath": "strDomicilioEmisor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "LocalidadE",
+          "ivnumOffset": "103",
+          "ivnumLen": "50",
+          "ivstrXpath": "strLocalidadEmisor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Provincia",
+          "ivnumOffset": "153",
+          "ivnumLen": "2",
+          "ivstrXpath": "nroProvinciaEmisor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "CodigoPostal",
+          "ivnumOffset": "158",
+          "ivnumLen": "10",
+          "ivstrXpath": "strCPEmisor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "InicioAcividades",
+          "ivnumOffset": "168",
+          "ivnumLen": "8",
+          "ivstrXpath": "dtmInicioEmisor",
+          "ivstrdefault": ""
+        }
+      ]
+    },
+    {
+      "ivstrNombreSeccion": "DATOS DEL RECEPTOR",
+      "ivstrXpath": "Applet.Nat.BR.VolDocument",
+      "ivstrTipoSeccion": "R",
+      "coCampos": [
+        {
+          "ivstrNombreCampo": "CUIT",
+          "ivnumOffset": "1",
+          "ivnumLen": "11",
+          "ivstrXpath": "lngCuitReceptor",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "TipoResp",
+          "ivnumOffset": "12",
+          "ivnumLen": "2",
+          "ivstrXpath": "nroTipoRespReceptor",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "Rsocial",
+          "ivnumOffset": "14",
+          "ivnumLen": "50",
+          "ivstrXpath": "strRSReceptor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Domicilio",
+          "ivnumOffset": "64",
+          "ivnumLen": "50",
+          "ivstrXpath": "strDomicilioReceptor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Localidad",
+          "ivnumOffset": "114",
+          "ivnumLen": "50",
+          "ivstrXpath": "strLocalidadReceptor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Provincia",
+          "ivnumOffset": "164",
+          "ivnumLen": "2",
+          "ivstrXpath": "nroProvinciaReceptor",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "CodigoPostal",
+          "ivnumOffset": "169",
+          "ivnumLen": "10",
+          "ivstrXpath": "strCPReceptor",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "NroIIBB",
+          "ivnumOffset": "179",
+          "ivnumLen": "11",
+          "ivstrXpath": "lngIBBReceptor",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "Email",
+          "ivnumOffset": "190",
+          "ivnumLen": "50",
+          "ivstrXpath": "strEmailReceptor",
+          "ivstrdefault": ""
+        }
+      ]
+    },
+    {
+      "ivstrNombreSeccion": "DETALLE DE LINEAS",
+      "ivstrXpath": "Applet.Nat.BR.VolDocumentLine",
+      "ivstrTipoSeccion": "D",
+      "coCampos": [
+        {
+          "ivstrNombreCampo": "Codigo",
+          "ivnumOffset": "1",
+          "ivnumLen": "20",
+          "ivstrXpath": "strProd",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Descripcion",
+          "ivnumOffset": "21",
+          "ivnumLen": "50",
+          "ivstrXpath": "strDesc",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "ReferenciaCliente",
+          "ivnumOffset": "71",
+          "ivnumLen": "50",
+          "ivstrXpath": "strRef",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Cantidad",
+          "ivnumOffset": "121",
+          "ivnumLen": "15",
+          "ivstrXpath": "valQ",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "UnidadMedida",
+          "ivnumOffset": "136",
+          "ivnumLen": "5",
+          "ivstrXpath": "strUM",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "PrecioUnitarioBruto",
+          "ivnumOffset": "141",
+          "ivnumLen": "15",
+          "ivstrXpath": "valPUB",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "PrecioUnitarioNeto",
+          "ivnumOffset": "156",
+          "ivnumLen": "15",
+          "ivstrXpath": "valPUN",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "Bonificacion",
+          "ivnumOffset": "171",
+          "ivnumLen": "15",
+          "ivstrXpath": "valBON",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "ImporteItemNeto",
+          "ivnumOffset": "201",
+          "ivnumLen": "15",
+          "ivstrXpath": "valImpN",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        }
+      ]
+    },
+    {
+      "ivstrNombreSeccion": "IVA",
+      "ivstrTipoSeccion": "I",
+      "ivstrXpath": "Applet.Nat.BR.VolDocumentIVA",
+      "coCampos": [
+        {
+          "ivstrNombreCampo": "TipoIVA",
+          "ivnumOffset": "1",
+          "ivnumLen": "1",
+          "ivstrXpath": "nroTipo",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "BaseImponible",
+          "ivnumOffset": "2",
+          "ivnumLen": "15",
+          "ivstrXpath": "valBase",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "Importe",
+          "ivnumOffset": "17",
+          "ivnumLen": "15",
+          "ivstrXpath": "valImporte",
+          "ivstrdefault": "0",
+          "ivnroqdecs": "2"
+        }
+      ]
+    },
+    {
+      "ivstrNombreSeccion": "DOCUMENTOS ASOCIADOS",
+      "ivstrTipoSeccion": "A",
+      "ivstrXpath": "Applet.Nat.BR.VolDocumentAsoc",
+      "coCampos": [
+        {
+          "ivstrNombreCampo": "Pvta",
+          "ivnumOffset": "1",
+          "ivnumLen": "5",
+          "ivstrXpath": "lngPvta",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "Nro",
+          "ivnumOffset": "6",
+          "ivnumLen": "8",
+          "ivstrXpath": "lngCbteNro",
+          "ivstrdefault": "0"
+        },
+        {
+          "ivstrNombreCampo": "Fecha",
+          "ivnumOffset": "14",
+          "ivnumLen": "8",
+          "ivstrXpath": "dtmFecha",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Cuit",
+          "ivnumOffset": "22",
+          "ivnumLen": "11",
+          "ivstrXpath": "lngCuit",
+          "ivstrdefault": "0"
+        }
+      ]
+    },
+    {
+      "ivstrNombreSeccion": "OTROS TRIBUTOS",
+      "ivstrTipoSeccion": "T",
+      "ivstrXpath": "VolDocumentTributo",
+      "coCampos": [
+        {
+          "ivstrNombreCampo": "Codigo",
+          "ivnumOffset": "1",
+          "ivnumLen": "2",
+          "ivstrXpath": "nroCodigo",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Jurisdiccion",
+          "ivnumOffset": "3",
+          "ivnumLen": "50",
+          "ivstrXpath": "strJurisdiccion",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "BaseImponible",
+          "ivnumOffset": "53",
+          "ivnumLen": "15",
+          "ivstrXpath": "valBase",
+          "ivstrdefault": "",
+          "ivnroqdecs": "2"
+        },
+        {
+          "ivstrNombreCampo": "Tasa",
+          "ivnumOffset": "68",
+          "ivnumLen": "15",
+          "ivstrXpath": "valTasa",
+          "ivstrdefault": "",
+          "ivnroqdecs": "5"
+        },
+        {
+          "ivstrNombreCampo": "Importe",
+          "ivnumOffset": "83",
+          "ivnumLen": "15",
+          "ivstrXpath": "valImporte",
+          "ivstrdefault": "",
+          "ivnroqdecs": "2"
+        }
+      ]
+    },
+    {
+      "ivstrNombreSeccion": "ADICIONALES",
+      "ivstrTipoSeccion": "D",
+      "ivstrXpath": "Applet.Nat.BR.VolDocumentAdic",
+      "coCampos": [
+        {
+          "ivstrNombreCampo": "Id",
+          "ivnumOffset": "1",
+          "ivnumLen": "10",
+          "ivstrXpath": "strId",
+          "ivstrdefault": ""
+        },
+        {
+          "ivstrNombreCampo": "Descripcion",
+          "ivnumOffset": "1",
+          "ivnumLen": "10",
+          "ivstrXpath": "strDescripcion",
+          "ivstrdefault": ""
+        }
+      ]
+    }
+
+  ]
+}

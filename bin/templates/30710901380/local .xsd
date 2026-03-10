@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by  () -->
+<!-- edited with XMLSPY v5 U (http://www.xmlspy.com) by Registred (Registred) -->
+<!-- Esquema XML extendido para la generacion de Comprobantes Fiscales Digitales - Fecha Actualizacion 2004-04-26 -->
+<xs:schema xmlns="http://www.afip.com.ar/fe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.afip.com.ar/fe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:complexType name="TipoDomicilio">
+    <xs:all>
+      <xs:element name="Calle" type="xs:string"/>
+      <xs:element name="Numero" type="xs:string"/>
+      <xs:element name="Piso" type="xs:string"/>
+      <xs:element name="Depto" type="xs:string"/>
+      <xs:element name="Cuidad" type="xs:string"/>
+      <xs:element name="Referencia" type="xs:string"/>
+      <xs:element name="Pcia" type="xs:string"/>
+      <xs:element name="Pais" type="xs:string"/>
+      <xs:element name="CP" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TipoTributo">
+    <xs:all>
+      <xs:element name="Id" type="xs:integer"/>
+      <xs:element name="Dsc" type="xs:string"/>
+      <xs:element name="BaseImponible" type="xs:integer"/>
+      <xs:element name="Alicuota" type="xs:integer"/>
+      <xs:element name="Importe" type="xs:integer"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LstTributo">
+    <xs:sequence>
+      <xs:element name="Tributo" type="TipoTributo" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TipoAlicuota">
+    <xs:all>
+      <xs:element name="Id" type="xs:integer"/>
+      <xs:element name="BaseImponible" type="xs:integer"/>
+      <xs:element name="Importe" type="xs:integer"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LstAlicuota">
+    <xs:sequence>
+      <xs:element name="Alicuota" type="TipoAlicuota" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TipoAsociado">
+    <xs:all>
+      <xs:element name="PVta" type="xs:integer"/>
+      <xs:element name="Tipo" type="xs:integer"/>
+      <xs:element name="Nro" type="xs:integer"/>
+      <xs:element name="Cuit" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LstAsociado">
+    <xs:sequence>
+      <xs:element name="Asociado" type="TipoAsociado" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TipoComprador">
+    <xs:all>
+      <xs:element name="TipoDocumento" type="xs:integer"/>
+      <xs:element name="NroDocumento" type="xs:string" />
+      <xs:element name="Porcentaje" type="xs:integer"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LstComprador">
+    <xs:sequence>
+      <xs:element name="Comprador" type="TipoComprador" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TipoOpcional">
+    <xs:all>
+      <xs:element name="Id" type="xs:integer"/>
+      <xs:element name="Valor" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LstOpcional">
+    <xs:sequence>
+      <xs:element name="Opcional" type="TipoOpcional" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TipoDetalle">
+    <xs:all>
+      <xs:element name="Id" type="xs:string"/>
+      <xs:element name="DscItem" type="xs:integer"/>
+      <xs:element name="q" type="xs:integer"/>
+      <xs:element name="PUBruto" type="xs:integer"/>
+      <xs:element name="PUNeto" type="xs:integer"/>
+      <xs:element name="ImpBruto" type="xs:integer"/>
+      <xs:element name="ImpNeto" type="xs:integer"/>
+      <xs:element name="ImpTotal" type="xs:integer"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LstDetalle">
+    <xs:sequence>
+      <xs:element name="Linea" type="TipoDetalle" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TipoAuth">
+    <xs:all>
+      <xs:element name="CAE" type="xs:string"/>
+      <xs:element name="Venc" type="xs:dateTime"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TipoDocument">
+    <xs:annotation>
+      <xs:documentation>Documento Tributario Electrónico</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="CuitEmisor" type="xs:string"/>
+      <xs:element name="DocTipoReceptor" type="xs:integer"/>     
+      <xs:element name="DocNroReceptor" type="xs:string"/>
+      <xs:element name="TipoResp" type="xs:integer"/>
+      <xs:element name="Concepto" type="xs:integer"/>
+      <xs:element name="PVta" type="xs:integer"/>
+      <xs:element name="Tipo" type="xs:integer"/>
+      <xs:element name="Nro" type="xs:integer"/>
+      <xs:element name="Fecha" type="xs:dateTime"/>
+      <xs:element name="Total" type="xs:integer"/>
+      <xs:element name="NetoGravado" type="xs:integer"/>
+      <xs:element name="NetoNoGravado" type="xs:integer"/>
+      <xs:element name="Exento" type="xs:integer"/>
+      <xs:element name="Moneda" type="xs:integer"/>
+      <xs:element name="ImpPalabra" type="xs:string"/>
+      <xs:element name="CondPago" type="xs:string"/>
+      <xs:element name="Observaciones" type="xs:string"/>
+      <xs:element name="RazonSocial" type="xs:string"/>
+      <xs:element name="Domicilio" type="TipoDomicilio"/>
+      <xs:element name="Alicuotas" type="LstAlicuota"/>
+      <xs:element name="Asociados" type="LstAsociado"/>
+      <xs:element name="Tributos" type="LstTributo"/>
+      <xs:element name="Compradores" type="LstComprador"/>
+      <xs:element name="Opcionales" type="LstOpcional"/>
+      <xs:element name="Detalle" type="LstDetalle"/>
+      <xs:element name="Auth" type="TipoAuth"/>
+      <xs:element name="ServicioDesde" type="xs:dateTime"/>
+      <xs:element name="ServicioHasta" type="xs:dateTime"/>
+      <xs:element name="QR" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:element name="Document" type="TipoDocument"/>
+</xs:schema>

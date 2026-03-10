@@ -1,0 +1,204 @@
+<DTE version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.afip.com.ar/fe">
+	<Documento Id="DTEc0ca694e46014130b59d9b1fffbf0576">
+		<Encabezado>
+			<IdDoc>
+				<NroTmte>1</NroTmte>
+				<Tipo>1</Tipo>
+				<Serie>1</Serie>
+				<Numero>412</Numero>
+				<Estado>ORIGINAL</Estado>
+				<NroInt>21000537 RI</NroInt>
+				<FechaEmis>2021-03-15T00:00:00</FechaEmis>
+				<IndServ>1</IndServ>
+				<FormaPago>Open AR/AP Data Migration</FormaPago>
+				<FechaVenc>2021-03-15</FechaVenc>
+				<FechaPago>2021-03-15</FechaPago>
+				<WSRegimen>wsfev1</WSRegimen>
+			</IdDoc>
+			<Emisor>
+				<CUITEmi>30710061447</CUITEmi>
+				<NmbEmi>Spirax Sarco S.A.</NmbEmi>
+				<TpoRespIVA>1</TpoRespIVA>
+				<FechaIniAct>1963-08-02</FechaIniAct>
+				<DirEmi>
+					<Calle>Autopista Panamericana Colectora Este 24951</Calle>
+					<Localidad>Don Torcuato</Localidad>
+					<Municipio>Don Torcuato</Municipio>
+					<Provincia>0</Provincia>
+					<Pais>Argentina</Pais>
+					<CP>B1611DFB</CP>
+				</DirEmi>
+			</Emisor>
+			<Receptor>
+				<DIRcp>30647660149</DIRcp>
+				<TpoDIRcp>80</TpoDIRcp>
+				<NmbRcp>CAÑOSIDER S.R.L.</NmbRcp>
+				<TpoRespIVA>1</TpoRespIVA>
+				<FechaIniAct>2010-01-01</FechaIniAct>
+				<Sucursal>55006938</Sucursal>
+				<EmailCont>test@test.com</EmailCont>
+				<DirRcp>
+					<Calle>RAMON LISTA 3882</Calle>
+					<Localidad>CIUDADELA</Localidad>
+					<Municipio>CIUDADELA</Municipio>
+					<Provincia>0</Provincia>
+					<Pais>ARGENTINA</Pais>
+					<CP>1702</CP>
+				</DirRcp>
+			</Receptor>
+			<Totales>
+				<Moneda>PES</Moneda>
+				<FctConv>1.000000</FctConv>
+				<ImpteNeto>16000.00</ImpteNeto>
+				<ImpteExe>0.00</ImpteExe>
+				<ImpteNetoNG>0.00</ImpteNetoNG>
+				<ImpteIVA>3360.00</ImpteIVA>
+				<ImpteTotal>20640.00</ImpteTotal>
+				<ImpteTributos>1280.00</ImpteTributos>
+			</Totales>
+			<Impuestos>
+				<TipoImp>IVA</TipoImp>
+				<TasaImp>21.00</TasaImp>
+				<CodTipoIva>5</CodTipoIva>
+				<BaseImp>16000.00</BaseImp>
+				<ImpteImp>3360.00</ImpteImp>
+			</Impuestos>
+			<Impuestos>
+				<TipoImp>IIBB</TipoImp>
+				<TasaImp>8.00</TasaImp>
+				<CodTipoTrib>2</CodTipoTrib>
+				<BaseImp>16000.00</BaseImp>
+				<ImpteImp>1280.00</ImpteImp>
+				<CodJurisImp>01</CodJurisImp>
+				<Descripcion>Percepción Pcia Bs As (N)</Descripcion>
+			</Impuestos>
+		</Encabezado>
+		<Detalle>
+			<NroLinDet>1</NroLinDet>
+			<CodItem>
+				<TpoCodigo>INT</TpoCodigo>
+				<VlrCodigo>SUN209</VlrCodigo>
+			</CodItem>
+			<DscLang>ES</DscLang>
+			<DscItem>Surface Finish Certificate</DscItem>
+			<QtyItem>10.00000</QtyItem>
+			<UnidMed>07</UnidMed>
+			<PrcBruto>1600.000</PrcBruto>
+			<PrcNeto>1600.000000</PrcNeto>
+			<ImpteDcto>0.00</ImpteDcto>
+			<SubImpDet>
+				<TipoImp>IVA</TipoImp>
+				<TasaImp>21.00</TasaImp>
+				<CodTipoIva>5</CodTipoIva>
+				<ImpteImp>3360.00</ImpteImp>
+			</SubImpDet>
+			<ImpteBruto>16000.00</ImpteBruto>
+			<ImpteNeto>16000.00</ImpteNeto>
+			<ImpteTotal>16000.00</ImpteTotal>
+		</Detalle>
+		<TimeStamp>2021-03-16T11:32:35</TimeStamp>
+	</Documento>
+	<Autorizacion>
+		<CodAut xmlns="http://www.afip.com.ar/fe">71117920076649</CodAut>
+		<FechaVtoAut xmlns="http://www.afip.com.ar/fe">2021-03-25</FechaVtoAut>
+		<TimeStampAut xmlns="http://www.afip.com.ar/fe">2021-03-16T00:00:00</TimeStampAut>
+		<BarCode xmlns="http://www.afip.com.ar/fe">https://www.afip.gob.ar/fe/qr?p=eyJ2ZXIiOiIxIiwiZmVjaGEiOiIyMDIxLTAzLTE1IiwiY3VpdCI6IjMwNzEwMDYxNDQ3IiwicHRvVnRhIjoiMSIsInRpcG9DbXAiOiIxIiwibnJvQ21wIjoiNDEyIiwiaW1wb3J0ZSI6MjA2NDAuMDAwMCwibW9uZWRhIjoiUEVTIiwiY3R6IjoxLjAsInRpcG9Eb2NSZWMiOiI4MCIsIm5yb0RvY1JlYyI6IjMwNjQ3NjYwMTQ5IiwidGlwb0NvZEF1dCI6IkUiLCJjb2RBdXQiOiI3MTExNzkyMDA3NjY0OSJ9</BarCode>
+		<BarCodeFont xmlns="http://www.afip.com.ar/fe">AHEEEHAPPEADMPHMFHNMIOMHLPMGEGJBHIPLKDJFMIHLOLKFODNPAJCCBNOIEKOHHJKJECJDAJGMHKCBJGPCJPAHEEEHA
+BNFFFNBPEGFDJCIGJOJPBOAKIGAKAHFHAKBCIOAOADFOMKMPILAOELJOAHFHAKACEDAOAKNHELADIHAKIGFCNPBNFFFNB
+IMGBIPFGDLGPFAPFEKDPDNGHFCDPFGAHCEHJMBEJAOKCPEKCDCMMGBADHHCCAGLNNPEBOIBPCHCJFPGCAKAPFBFOAIPMI
+ICGBCDFPPJLNNJCPNCNBDODLAPFMALKNAIBFFDABLFLKDCEEFFOPCGAMFMDALFNHLCAMAGLKNPMBIDMIJGLKKLKNLAKHG
+ELIEDLFMODHBCKDPHLPHEOHLIEEKDEDEDAEOHDLOHCCELHCFLLILNCGCJGHKMCIPCELOIFNFGDAJOGGPLFNEBOHCLFFIO
+BPDANGFCCFNJIIHPGPCFABJICEPHDBELBJDLIGMODNCGOLAHFFBPCFDMDPFLGMPKAGGBOLIOAPDIEFACAINPDIIAOKHNF
+NBCBNOFAJEFPILDKFJEBHBFKBCAMGKGOEPPDFJFMPMIMMGAGHMNBPDOCBLGKNFBHHJALOPCKKONEEDAPCEKKPDCDLIGOH
+CCPCAHFHAAILNPHHJINGACNKFOCDAHFHAADCJDJAKCHCKOFOIGMHPDBOAHFHABLOBGHPHMMDNDEMOPLONOMDAHFHALLIL
+ADMFHEFBDIHPKNJOMINIMMNAJHELEAEDCOBJFJFGIHCEIAIOCJAHIAPFAFDBDGHJPNIHICNLEGDNLFICOBIIBBHDBIBNF
+KPHLIGFIBJNMLLDDMBLOIGNEJGDFPCMNMLJKHMPHAGJFJEMHAAGNCLGAKCPGNNNDHKMIGGLMJMFFPIFNOODCCKDKOKKAH
+LGLLIHFKDEOHAIMCFAOBDPKHPAELJOBIBIFFLCMDGNFCHGKBAFHHINKPENLEFDAIKGPMBNIHDBEMKNHLDPMHDMALKDPIK
+PMMNPFFLBGKEFBFDNFGKMGKOGMHAMALKPDGABFMLOKPLOMBPEHLMOEFNJDFPNMDINFMDMCIIJGHOIGEBMIEHNOHHHMHAA
+OMIGCAFKKOEHCABMHMKAFJLBGLAKEGBNDJLFNIICILIOGHMKPHKICCLPGOLNDEBGGIEKEEKODMJDHIBNGHDKOGHONJCLC
+HEMICNFEALENOFGDOJMENHEKMGDOJMDLBIKLEFHEPGEIMHIKHECOFLJOJMDNAKFKIGLOEPNFGAGPAHLIMMIPJAKHLPDID
+JPFKAHFHAAHEKOOKBHJNKOMNBMLOAHFHADPOKNEIIPEFFDGKDIDPNJDGAHFHAGLKLEAFECFOFNDILNADNIBBAHFHAKJJB
+BICAEDFGFBCLPMDPKPHMBBEEMDJHGGBGHBDMIJLACLAOIFJIAGENBNMAAADFBNOCMCFJKGPOHOFAMCAMIMDKAAFAEIKLG
+AALENNFFKCEGCKMCJBNCEIOMABNBOBAKGICDDOKLKMGCCEHJHJBANBIDMPPJCIJOCELIIENFAIAKJEKKDPMHKHDDIHJEO
+LFBGEEFGPALNNOOOLGJEFAJADMCPEGIGPKCIGGNOGKOGDPGINELAHPLGJJNANAJMHFNAMAJOCGLKPEABLLBIGBJMMIJBB
+BFHILJFDELKGPHCIAAGBHOPACIGLJIELIFIDCNNMHPGDDCHMOLICBGMEOIDEPPIEEAEKONHPJPGFGIAPCEILDGMKOACKD
+OHLCJBFLELPIAMLENLIAPFMKKPDJADGLDFGCKHCKJOMOFIENHNJAANEOHKEECPEIGNPPLNNBOCMNEFKIBFIGLCCAKLHFP
+GCPOMCFLPGGOKGJHPJGMIPKAKLNDOJKKOBDNOPKMDEJGBLNBJBAIHFPPBMFBJCKPLNPCEAIMBPHMFPNAKCNNNCLNEOJFA
+MFFNNNEPBAMJMOOECPJMIFMEGHDGAHFHAJEMCFFMLJEANBHACLLINNMHAHFHAIBHIBJOJHLOHFAHEIBOFFHEAHFHAAKEG
+APBBBPAPJCJGJHFIOHEIKIHCNEFJHFDGHAHCPGCAFNFAALMKPMOOHHJDDAHDFBALIMNLPONBAAFOAPHIPEAACEEGHPLDG
+HHHHHHHPPHHPPHPHHPHPPPHPHHPPHHHHPHHPPHHPPPPPHPHHHHPPPHHPHPHPHPPPHHPHPHHPHHPPPPPHHPHHPHHHHPHPP
+		</BarCodeFont>
+	</Autorizacion>
+	<Extensions>
+		<Extension dteId="DTEc0ca694e46014130b59d9b1fffbf0576">
+			<StringField name="ProvinciaEmi">Buenos Aires</StringField>
+			<StringField name="IIBBEmi">902-919810-4</StringField>
+			<StringField name="TipoRespEmi">IVA Responsable Inscripto</StringField>
+			<StringField name="ProvinciaRpt">Buenos Aires</StringField>
+			<StringField name="IIBBRec">902-966644-4</StringField>
+			<StringField name="TipoRespRec">IVA Responsable Inscripto</StringField>
+			<StringField name="ImportePalabras">VEINTE MIL SEISCIENTOS CUARENTA  CON 00/100 ********************************************************</StringField>
+			<StringField name="CalleRpt">RAMON LISTA 3882</StringField>
+			<StringField name="CPRpt">1702</StringField>
+			<StringField name="LocalidadRpt">CIUDADELA</StringField>
+			<StringField name="PaisRpt">ARGENTINA</StringField>
+			<StringField name="TitImpuesto1">Percepción Pcia Bs As (N)</StringField>
+			<StringField name="TitImpuesto2" />
+			<StringField name="TitImpuesto3" />
+			<StringField name="TitImpuesto4" />
+			<StringField name="TitImpuesto5" />
+			<StringField name="TitImpuesto6" />
+			<StringField name="CJ1">01</StringField>
+			<StringField name="CJ2" />
+			<StringField name="CJ3" />
+			<StringField name="CJ4" />
+			<StringField name="CJ5" />
+			<StringField name="CJ6" />
+			<StringField name="EmailCont">test@test.com</StringField>
+			<StringField name="Nombre2Ent">CAÑOSIDER S.R.L.</StringField>
+			<StringField name="DomicilioEnt">RAMON LISTA 3882</StringField>
+			<StringField name="LocalidadEnt">CIUDADELA</StringField>
+			<StringField name="PaisEnt">Argentina</StringField>
+			<StringField name="CPEnt">1702</StringField>
+			<StringField name="CodigoEnt">55006938</StringField>
+			<StringField name="TipoRef" />
+			<StringField name="SerieRef" />
+			<StringField name="NroRef" />
+			<StringField name="FechaRef" />
+			<StringField name="ID1" />
+			<StringField name="ValorID1" />
+			<StringField name="ID2" />
+			<StringField name="ValorID2" />
+			<StringField name="ID3" />
+			<StringField name="ValorID3" />
+			<StringField name="OtherTerms" />
+			<StringField name="Account">55006938</StringField>
+			<StringField name="CostomerPO">Test Gosocket 002</StringField>
+			<StringField name="SO">21000879 SO</StringField>
+			<StringField name="YourContact" />
+			<StringField name="OurContact">Niels Valant (SxS DK)</StringField>
+			<StringField name="Nombre1Ent">CAÑOSIDER S.R.L.</StringField>
+			<StringField name="CodigoFact">55006938</StringField>
+			<StringField name="Nombre1Fact">CAÑOSIDER S.R.L.</StringField>
+			<StringField name="Nombre2Fact">CAÑOSIDER S.R.L.</StringField>
+			<StringField name="DomicilioFact">RAMON LISTA 3882</StringField>
+			<StringField name="LocalidadFact">CIUDADELA</StringField>
+			<StringField name="CPFact">1702</StringField>
+			<StringField name="PaisFact">Argentina</StringField>
+			<StringField name="SIGEXT_MOTIVO">00</StringField>
+			<NumericField name="IVA1">3360.00</NumericField>
+			<NumericField name="TasaIVA1">21.000</NumericField>
+			<NumericField name="TasaImpuesto1">8.000</NumericField>
+			<NumericField name="Impuesto1">1280.00</NumericField>
+			<NumericField name="BI1">16000.00</NumericField>
+			<DetailExtension>
+				<DetExtNroItem>1</DetExtNroItem>
+				<DetExtAFN_01>0</DetExtAFN_01>
+				<DetExtAFN_03>País por defecto</DetExtAFN_03>
+				<DetExtAFN_04>SUN209</DetExtAFN_04>
+				<DetExtNUD_01>0.00</DetExtNUD_01>
+				<DetExtNUD_02>0</DetExtNUD_02>
+			</DetailExtension>
+		</Extension>
+	</Extensions>
+</DTE>

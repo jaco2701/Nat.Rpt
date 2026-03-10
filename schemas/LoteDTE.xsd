@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://www.afip.com.ar/fe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.afip.com.ar/fe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="DTE_v1.0.xsd"/>
+	<xs:element name="LoteDTE">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="DTE"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

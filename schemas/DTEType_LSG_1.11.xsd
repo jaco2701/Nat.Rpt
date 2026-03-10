@@ -1,0 +1,2636 @@
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns="http://www.afip.com.ar/fe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.afip.com.ar/fe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="dummyResp" type="dummyRespType"/>
+	<xs:complexType name="dummyRespType">
+		<xs:sequence>
+			<xs:element name="return" type="returnDummyRespType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="returnDummyRespType">
+		<xs:sequence>
+			<xs:element name="appserver" type="xs:string"/>
+			<xs:element name="authserver" type="xs:string"/>
+			<xs:element name="dbserver" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="liquidacionResp" type="LpgLiqRespType"/>
+	<xs:complexType name="LpgLiqReturnType">
+		<xs:sequence>
+			<xs:element name="autorizacion" type="LpgLiquidacionRespType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Datos resultantes del procesamiento de
+								la o las
+								liquidaciones
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="liquidacionReq" type="LpgLiqReqType"/>
+	<xs:complexType name="LpgLiqReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="liquidacion" type="LpgLiquidacionBaseType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAuthType">
+		<xs:sequence>
+			<xs:element name="token" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="sign" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuit" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiquidacionBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="numeroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroActComprador" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codTipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Codigo del Tipo de Operacion.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="esLiquidacionPropia" type="LpgSiNoType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Si es liquidacion propia, los datos del
+								comprador deben ser iguales a los datos
+								del vendedor. Solo
+								informar cuando
+								liquida Comprador
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="esCanje" type="LpgEsCanjeType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Informar solo cuando el tipo de
+								operacion es 01
+								- Compra Venta
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codPuerto" type="LpgCodPuertoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="desPuertoLocalidad" type="LpgDesPuertoLocalidadType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoSinCertificado" type="LpgPesoNetoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codLocalidadProcedenciaSinCertificado" type="LpgCodLocProcedenciaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codProvProcedenciaSinCertificado" type="LpgCodProvProcedenciaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="actuaCorredor" type="LpgSiNoType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Determina si interviene un corredor en
+								la
+								liquidacion. En caso afirmativo
+								informar cuit corredor, comision
+								corredor e ingresos brutos del corredor.
+								El ingreso bruto
+								informar solo en los
+								casos en donde el que liquida sea el
+								corredor. Si liquida el comprador no
+								informar.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="liquidaCorredor" type="LpgSiNoType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Determina si el que se encuentra
+								liquidando es
+								el corredor. En caso de
+								ser el corredor quien esta liquidando,
+								los datos que lo identifican deben
+								coincidir con los datos del
+								representado.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="comisionCorredor" type="LpgPorcType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoCorredor" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaPrecioOperacion" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="precioRefTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGradoRef" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGradoEnt" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="valGradoEnt" type="LpgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="factorEnt" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="contProteico" type="LpgContProteicoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="alicIvaOperacion" type="LpgAlicuotaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="campaniaPPal" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codLocalidadProcedencia" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codProvProcedencia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="certificados" type="LpgArrCertType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrCertType">
+		<xs:sequence>
+			<xs:element name="certificado" type="LpgCertType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgCertType">
+		<xs:annotation>
+			<xs:documentation>Nro de certificado de deposito intransferible
+						(F1116-A) o Nro de certificado de retiro y transferencias de
+						granso certificados y no comercializados (F1116RT)
+					</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tipoCertificadoDeposito" type="LpgTipoCertificadoDepType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroCertificadoDeposito" type="LpgNroCertDepType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNeto" type="LpgPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoTotalCertificado" type="LpgPesoNetoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codLocalidadProcedencia" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codProvProcedencia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaCierre" type="xs:date" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiquidacionRespType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codTipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codTipoAjuste" type="LpgCodTipoAjusteType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Codigo del Tipo de Ajuste. Solo se
+								informa
+								cuando obtenemos datos
+								resultantes de un ajuste. No se informa
+								el
+								campo ante una liquidacion.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nroOpComercial" type="LpgNroOpComercialType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaLiquidacion" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subTotal" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="operacionConIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalPesoNeto" type="LpgTotalPesoNetoType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Sumatoria de todos los pesos netos de
+								los
+								certificados informados.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deducciones" type="LpgArrDeduccionRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalDeduccion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalRetencion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalRetencionAfip" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalOtrasRetenciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalNetoAPagar" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalIvaRg2300_07" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalPagoSegunCondicion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Codigo de operacion electronica
+								perteneciente
+								al ajuste.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coeAjustado" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Codigo de operacion electronica
+								ajustado.
+								Pertenece al codigo de la
+								operacion a la cual se le realiza el
+								ajuste.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numeroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="estado" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrErrorType">
+		<xs:sequence>
+			<xs:element name="error" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrOpcionalType">
+		<xs:sequence>
+			<xs:element name="opcional" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrDeduccionType">
+		<xs:sequence>
+			<xs:element name="deduccion" type="LpgDeduccionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgDeduccionType">
+		<xs:sequence>
+			<xs:element name="codigoConcepto" type="LpgCodConceptoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="detalleAclaratorio" type="LpgDetalleDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="diasAlmacenaje" type="LpgDiasAlmacenajeType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioPKGdiario" type="LpgPrecioKgDiarioType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="comisionGastosAdm" type="LpgComisionGastosAdmType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="baseCalculo" type="LpgBaseCalculoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="alicuotaIva" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrRetencionType">
+		<xs:sequence>
+			<xs:element name="retencion" type="LpgRetencionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgRetencionType">
+		<xs:sequence>
+			<xs:element name="codigoConcepto" type="LpgCodConceptoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="detalleAclaratorio" type="LpgDetalleRetencionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="baseCalculo" type="LpgBaseCalculoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="alicuota" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroCertificadoRetencion" type="LpgNroCertRetType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaCertificadoRetencion" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeCertificadoRetencion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrEventoType">
+		<xs:sequence>
+			<xs:element name="evento" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgEventoType">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="msg" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="provinciasReq" type="LpgProvinciasReqType"/>
+	<xs:element name="provinciasResp" type="LpgProvinciasRespType"/>
+	<xs:element name="tipoOperacionReq" type="LpgTipoOperacionReqType"/>
+	<xs:element name="tipoOperacionResp" type="LpgTipoOperacionRespType"/>
+	<xs:element name="puertoReq" type="LpgPuertoReqType"/>
+	<xs:element name="puertoResp" type="LpgPuertoRespType"/>
+	<xs:element name="tipoActividadReq" type="LpgTipoActividadReqType"/>
+	<xs:element name="tipoActividadResp" type="LpgTipoActividadRespType"/>
+	<xs:element name="tipoActividadRepresentadoReq" type="LpgTipoActividadReqType"/>
+	<xs:element name="tipoActividadRepresentadoResp" type="LpgTipoActividadRespType"/>
+	<xs:element name="tipoCertificadoDepReq" type="LpgTipoCertDepReqType"/>
+	<xs:element name="tipoCertificadoDepResp" type="LpgTipoCertDepRespType"/>
+	<xs:complexType name="LpgProvinciasReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgProvinciasReturnType">
+		<xs:sequence>
+			<xs:element name="provincias" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrCodigoDescripcionType">
+		<xs:sequence>
+			<xs:element name="codigoDescripcion" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgCodigoDescripcionType">
+		<xs:sequence>
+			<xs:element name="codigo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="descripcion" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoRetencionReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoRetencionReturnType">
+		<xs:sequence>
+			<xs:element name="tiposRetencion" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoOperacionReturnType">
+		<xs:sequence>
+			<xs:element name="tiposOperacion" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoCertDepReturnType">
+		<xs:sequence>
+			<xs:element name="tiposCertDep" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoActividadReturnType">
+		<xs:sequence>
+			<xs:element name="tiposActividad" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoDeduccionReturnType">
+		<xs:sequence>
+			<xs:element name="tiposDeduccion" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoCertDepReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoActividadReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoOperacionReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroActLiquida" type="xs:long" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Actividad identificada sobre el cuit que
+								liquida. Puede ser actividad del comprador o del corredor.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgPuertoReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgPuertoReturnType">
+		<xs:sequence>
+			<xs:element name="puertos" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrCodigoPostalType">
+		<xs:sequence>
+			<xs:element name="codigoPostal" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="tipoRetencionReq" type="LpgTipoRetencionReqType"/>
+	<xs:complexType name="LpgTipoDeduccionReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="tipoRetencionResp" type="LpgTipoRetencionRespType"/>
+	<xs:element name="tipoDeduccionReq" type="LpgTipoDeduccionReqType"/>
+	<xs:element name="tipoDeduccionResp" type="LpgTipoDeduccionRespType"/>
+	<xs:element name="tipoGranoReq" type="LpgTipoGranoReqType"/>
+	<xs:element name="tipoGranoResp" type="LpgTipoGranoRespType"/>
+	<xs:complexType name="LpgTipoGranoReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoGranoReturnType">
+		<xs:sequence>
+			<xs:element name="granos" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="gradoReferenciaReq" type="LpgGradoRefReqType"/>
+	<xs:element name="gradoReferenciaResp" type="LpgGradoRefRespType"/>
+	<xs:complexType name="LpgGradoRefReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgGradoRefReturnType">
+		<xs:sequence>
+			<xs:element name="gradosRef" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqConsReturnType">
+		<xs:sequence>
+			<xs:element name="liquidacion" type="LpgLiquidacionBaseType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="autorizacion" type="LpgLiquidacionRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="pdf" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="liqConsXCoeReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="liqConsXCoeResp" type="LpgLiqConsRespType"/>
+	<xs:complexType name="LpgLiqConsXCoeReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pdf" type="LpgSiNoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="liqUltNroOrdenReq" type="LpgLiqUltNroOrdenReqType"/>
+	<xs:element name="liqUltNroOrdenResp" type="LpgLiqUltNroOrdenRespType"/>
+	<xs:complexType name="LpgLiqUltNroOrdenReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqUltNroOrdenReturnType">
+		<xs:sequence>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgSiNoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgPorcType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCuit0Type">
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCuitType">
+		<xs:restriction base="xs:long">
+			<xs:minExclusive value="9999999999"/>
+			<xs:maxInclusive value="99999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgGradoValorType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="8"/>
+			<xs:maxInclusive value="1.99999999"/>
+			<xs:minExclusive value="0.00000000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgGradoCodigoType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgIbType">
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="999999999999999"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="LpgLiqRespType">
+		<xs:sequence>
+			<xs:element name="liqReturn" type="LpgLiqReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgProvinciasRespType">
+		<xs:sequence>
+			<xs:element name="provinciasReturn" type="LpgProvinciasReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoOperacionRespType">
+		<xs:sequence>
+			<xs:element name="tipoOperacionReturn" type="LpgTipoOperacionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgPuertoRespType">
+		<xs:sequence>
+			<xs:element name="puertoReturn" type="LpgPuertoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoActividadRespType">
+		<xs:sequence>
+			<xs:element name="tipoActividadReturn" type="LpgTipoActividadReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoCertDepRespType">
+		<xs:sequence>
+			<xs:element name="tipoCertDepReturn" type="LpgTipoCertDepReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoRetencionRespType">
+		<xs:sequence>
+			<xs:element name="tipoRetencionReturn" type="LpgTipoRetencionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoDeduccionRespType">
+		<xs:sequence>
+			<xs:element name="tipoDeduccionReturn" type="LpgTipoDeduccionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTipoGranoRespType">
+		<xs:sequence>
+			<xs:element name="tipoGranoReturn" type="LpgTipoGranoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgGradoRefRespType">
+		<xs:sequence>
+			<xs:element name="gradoRefReturn" type="LpgGradoRefReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqConsRespType">
+		<xs:sequence>
+			<xs:element name="liqConsReturn" type="LpgLiqConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqUltNroOrdenRespType">
+		<xs:sequence>
+			<xs:element name="liqUltNroOrdenReturn" type="LpgLiqUltNroOrdenReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrDeduccionRespType">
+		<xs:sequence>
+			<xs:element name="deduccionReturn" type="LpgDeduccionReturnType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgDeduccionReturnType">
+		<xs:sequence>
+			<xs:element name="deduccion" type="LpgDeduccionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeDeduccion" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrRetencionRespType">
+		<xs:sequence>
+			<xs:element name="retencionReturn" type="LpgRetencionReturnType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgRetencionReturnType">
+		<xs:sequence>
+			<xs:element name="retencion" type="LpgRetencionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeRetencion" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="campaniaReq" type="LpgCampaniaReqType"/>
+	<xs:element name="campaniaResp" type="LpgCampaniaRespType"/>
+	<xs:complexType name="LpgCampaniaReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgCampaniaRespType">
+		<xs:sequence>
+			<xs:element name="campaniaReturn" type="LpgCampaniaReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgCampaniaReturnType">
+		<xs:sequence>
+			<xs:element name="campanias" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgEsCanjeType">
+		<xs:annotation>
+			<xs:documentation>P - Canje Parcial
+						T - Canje Total
+						N - No es canje
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgNroCertDepType">
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="999999999999"/>
+			<xs:minExclusive value="100000000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgPesoNetoType">
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="99999999"/>
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCampaniaType">
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="9999"/>
+			<xs:minInclusive value="203"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCodLocProcedenciaType">
+		<xs:restriction base="xs:long">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCodProvProcedenciaType">
+		<xs:restriction base="xs:short">
+			<xs:maxInclusive value="99"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgPrecioRefTnType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:maxInclusive value="99999.999"/>
+			<xs:minInclusive value="0.000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCodPuertoType">
+		<xs:restriction base="xs:long">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgDatosAdicionalesType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="400"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgPrecioFleteTnType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:maxInclusive value="99999.99"/>
+			<xs:minInclusive value="0.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgFactorEntType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="8"/>
+			<xs:minExclusive value="0.00000000"/>
+			<xs:maxInclusive value="999.99999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgContProteicoType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:maxInclusive value="999.999"/>
+			<xs:minInclusive value="0.000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgComisionGastosAdmType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:maxInclusive value="99.99"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgDetalleDeduccionType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgBaseCalculoType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:maxInclusive value="99999999.99"/>
+			<xs:minInclusive value="0.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgDiasAlmacenajeType">
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="9999"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgPrecioKgDiarioType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="8"/>
+			<xs:maxInclusive value="999.99999999"/>
+			<xs:minInclusive value="0.000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgDetalleRetencionType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgAlicuotaType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="4"/>
+			<xs:maxInclusive value="100"/>
+			<xs:minInclusive value="0.0000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCodTipoOperacionType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgNroOpComercialType">
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgTotalPesoNetoType">
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="99999999"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="liqConsXNroOrdenReq" type="LpgLiqConsXNroOrdenReqType"/>
+	<xs:element name="liqConsXNroOrdenResp" type="LpgLiqConsRespType"/>
+	<xs:complexType name="LpgLiqConsXNroOrdenReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="localidadReq" type="LpgLocalidadReqType"/>
+	<xs:element name="localidadResp" type="LpgLocalidadesRespType"/>
+	<xs:complexType name="LpgLocalidadReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codProvincia" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLocalidadesRespType">
+		<xs:sequence>
+			<xs:element name="localidadesReturn" type="LpgLocalidadesReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLocalidadesReturnType">
+		<xs:sequence>
+			<xs:element name="localidades" type="LpgArrCodigoDescripcionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgActividadType">
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="99999"/>
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCodigoGranoType">
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="999"/>
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgImporte_17_2_Type">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:maxInclusive value="99999999999999999.99"/>
+			<xs:minInclusive value="0.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="gradoEntregadoReq" type="LpgGradoEntReqType"/>
+	<xs:element name="gradoEntregadoResp" type="LpgGradoEntRespType"/>
+	<xs:complexType name="LpgGradoEntReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Codigo del grano
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgGradoEntRespType">
+		<xs:sequence>
+			<xs:element name="gradoEntReturn" type="LpgGradoEntReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgGradoEntReturnType">
+		<xs:sequence>
+			<xs:element name="gradoEnt" type="LpgArrGradoEntType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrGradoEntType">
+		<xs:sequence>
+			<xs:element name="gradoEnt" type="LpgGradoEntType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgGradoEntType">
+		<xs:sequence>
+			<xs:element name="codigoDescripcion" type="LpgCodigoDescripcionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="valor" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajusteReq" type="LpgAjusteReqType"/>
+	<xs:element name="ajusteResp" type="LpgAjusteRespType"/>
+	<xs:complexType name="LpgAjusteReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajuste" type="LpgAjusteBaseType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteRespType">
+		<xs:sequence>
+			<xs:element name="ajusteReturn" type="LpgLiqReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coeAjustado" type="xs:long" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								COE que se va a ajustar
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codTipoAjuste" type="LpgCodTipoAjusteType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Liquidacion de debito o Liquidacion de
+								credito.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="diferenciaPesoNeto" type="LpgTotalPesoNetoType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Peso neto total a ajustar
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="diferenciaPrecioOperacion" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="valGrado" type="LpgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="factor" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="diferenciaPrecioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="certificados" type="LpgArrCertType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva0" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva105" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva21" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgCodTipoAjusteType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgDesPuertoLocalidadType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="240"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgImporte_17_3_Type">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:minInclusive value="0.000"/>
+			<xs:maxInclusive value="99999999999999999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgTipoCertificadoDepType">
+		<xs:annotation>
+			<xs:documentation>
+						1: F1116/RT, 5: F1116/A, 332: Certificado
+						Electronico de Deposito.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgCodConceptoType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgNroCertRetType">
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99999999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="anulacionReq" type="LpgAnulacionReqType"/>
+	<xs:element name="anulacionResp" type="LpgAnulacionRespType"/>
+	<xs:complexType name="LpgAnulacionReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAnulacionRespType">
+		<xs:sequence>
+			<xs:element name="anulacionReturn" type="LpgAnulacionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAnulacionReturnType">
+		<xs:sequence>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="resultado" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgPtoEmision">
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="ajustePapelReq" type="LpgAjustePapelReqType"/>
+	<xs:complexType name="LpgAjustePapelReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajustePapelBase" type="LpgAjustePapelBaseType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjustePapelBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoFormulario" type="LpgTipoFormularioType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroFormulario" type="LpgNroCertDepType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="actividad" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoAjuste" type="lpgTipoAjustePapelType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="certificados" type="LpgArrCertType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva0" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva105" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva21" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codProvincia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="lpgTipoAjustePapelType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="LpgTipoFormularioType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="LpgAjustePapelRespType">
+		<xs:sequence>
+			<xs:element name="ajustePapelReturn" type="LpgLiqReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajustarUnificadoReq" type="LpgAjusteUnificadoReqType"/>
+	<xs:complexType name="LpgAjusteUnificadoReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteBase" type="LpgAjusteUnifBaseType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteCredito" type="LpgAjusteCreditoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajusteDebito" type="LpgAjusteDebitoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgNroContrato">
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:complexType name="LpgAjusteUnifBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coeAjustado" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="certificados" type="LpgArrCertType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codProv" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteCreditoType">
+		<xs:sequence>
+			<xs:element name="diferenciaPesoNeto" type="LpgDiferenciaPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="diferenciaPrecioOperacion" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="valGrado" type="LpgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="factor" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="diferenciaPrecioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteDebitoType">
+		<xs:sequence>
+			<xs:element name="diferenciaPesoNeto" type="LpgDiferenciaPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="diferenciaPrecioOperacion" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="valGrado" type="LpgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="factor" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="diferenciaPrecioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgImporte11_2Type">
+		<xs:restriction base="xs:decimal">
+			<xs:maxExclusive value="99999999999.99"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="LpgAjusteUnificadoReturnType">
+		<xs:sequence>
+			<xs:element name="ajusteUnificado" type="LpgAjusteUnificadoRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteUnificadoRespType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coeAjustado" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codTipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteCredito" type="LpgAjusteCreditoRespType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteDebito" type="LpgAjusteDebitoRespType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="totalesUnificados" type="LpgTotalesUnifcadosType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Codigo de operacion electronica
+								perteneciente
+								al ajuste.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="estado" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjustarUnificadoRespType">
+		<xs:sequence>
+			<xs:element name="ajusteUnifReturn" type="LpgAjusteUnificadoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajustarUnificadoResp" type="LpgAjustarUnificadoRespType"/>
+	<xs:complexType name="LpgAjusteCreditoRespType">
+		<xs:sequence>
+			<xs:element name="nroOpComercial" type="LpgNroOpComercialType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaLiquidacion" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subTotal" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="operacionConIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalPesoNeto" type="LpgTotalPesoNetoType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Sumatoria de todos los pesos netos de
+								los
+								certificados informados.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="importes" type="LpgArrImportesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="deducciones" type="LpgArrDeduccionRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalDeduccion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalRetencion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalRetencionAfip" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalOtrasRetenciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalNetoAPagar" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalIvaRg2300_07" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalPagoSegunCondicion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteDebitoRespType">
+		<xs:sequence>
+			<xs:element name="nroOpComercial" type="LpgNroOpComercialType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaLiquidacion" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subTotal" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="operacionConIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalPesoNeto" type="LpgTotalPesoNetoType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Sumatoria de todos los pesos netos de
+								los
+								certificados informados.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="importes" type="LpgArrImportesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="deducciones" type="LpgArrDeduccionRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalDeduccion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalRetencion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalRetencionAfip" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalOtrasRetenciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalNetoAPagar" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalIvaRg2300_07" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalPagoSegunCondicion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgTotalesUnifcadosType">
+		<xs:sequence>
+			<xs:element name="subTotalDebCred" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="totalBaseDeducciones" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="subTotalGeneral" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ivaDeducciones" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="iva105" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="iva21" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="retencionesGanancias" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="retencionesIVA" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeOtrasRetenciones" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeNeto" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ivaRG2300_2007" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pagoSCondicion" type="LpgImporte11_2LibreType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgDifPesoNetoType">
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="LpgConceptoImporteType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="LpgArrImportesType">
+		<xs:sequence>
+			<xs:element name="importeReturn" type="LpgImportesNetoAjustadoType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgImportesNetoAjustadoType">
+		<xs:sequence>
+			<xs:element name="importe" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="concepto" type="LpgConceptoImporteType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="alicuota" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ivaCalculado" type="LpgImporte_17_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajustarContratoReq" type="LpgAjusteContratoReqType"/>
+	<xs:complexType name="LpgAjusteContratoReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteBase" type="LpgAjusteContratoBaseType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteCredito" type="LpgAjustePorImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajusteDebito" type="LpgAjustePorImporteType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteContratoBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="certificados" type="LpgArrCertType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="actividad" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="precioRefTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGradoEnt" type="LpgGradoCodigoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="valGradoEnt" type="LpgGradoValorType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="precioFleteTn" type="LpgPrecioFleteTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codPuerto" type="LpgCodPuertoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="desPuertoLocalidad" type="LpgDesPuertoLocalidadType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codProv" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjustePorImporteType">
+		<xs:sequence>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva105" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva105" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoImporteIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustarIva21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="deducciones" type="LpgArrDeduccionType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajustarContratoResp" type="LpgAjustarContratoRespType"/>
+	<xs:complexType name="LpgAjustarContratoRespType">
+		<xs:sequence>
+			<xs:element name="ajusteContratoReturn" type="LpgAjusteContratoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteContratoReturnType">
+		<xs:sequence>
+			<xs:element name="ajusteContrato" type="LpgAjusteUnificadoRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteUnificadoPapelReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteBase" type="LpgAjustePapelUnifBaseType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteCredito" type="LpgAjustePorImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajusteDebito" type="LpgAjustePorImporteType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjustePapelUnifBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoFormulario" type="LpgTipoFormularioType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroFormulario" type="LpgNroCertDepType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="actividad" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="certificados" type="LpgArrCertType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="comisionCorredor" type="LpgPorcType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoCorredor" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codProvincia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajustarUnificadoPapelResp" type="LpgAjustarUnificadoPapelRespType"/>
+	<xs:complexType name="LpgAjustarUnificadoPapelRespType">
+		<xs:sequence>
+			<xs:element name="ajustePapelReturn" type="LpgAjustePapelUnifReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjustePapelUnifReturnType">
+		<xs:sequence>
+			<xs:element name="ajustePapel" type="LpgAjusteUnificadoRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgNumeroContratoType">
+		<xs:restriction base="xs:integer">
+			<xs:maxInclusive value="999999999999999"/>
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgImporte11_2LibreType">
+		<xs:restriction base="xs:decimal">
+			<xs:minExclusive value="-99999999999.99"/>
+			<xs:maxExclusive value="99999999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LpgDiferenciaPesoNetoType">
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+			<xs:maxExclusive value="99999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="ajusteXCoeConsReq" type="LpgAjusteXcoeConsReqType"/>
+	<xs:complexType name="LpgAjusteXcoeConsReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pdf" type="LpgSiNoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajusteXcoeConsResp" type="LpgAjusteXcoeConsRespType"/>
+	<xs:complexType name="LpgAjusteXcoeConsRespType">
+		<xs:sequence>
+			<xs:element name="ajusteConsReturn" type="LpgAjusteConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteConsReturnType">
+		<xs:sequence>
+			<xs:element name="ajusteUnificado" type="LpgAjusteUnificadoRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="pdf" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="asociarLiqAContratoReq" type="LpgAsociarLiqAContratoReqType"/>
+	<xs:complexType name="LpgAsociarLiqAContratoReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="asociarLiqAContratoResp" type="LpgAsociarLiqAContratoRespType"/>
+	<xs:complexType name="LpgAsociarLiqAContratoRespType">
+		<xs:sequence>
+			<xs:element name="liquidacion" type="LpgLiqConsReturnType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="liquidacionPorContratoConsultarReq" type="LpgLiqPorContratoConsReqType"/>
+	<xs:element name="liquidacionPorContratoConsultarResp" type="LpgLiqPorContratoConsRespType"/>
+	<xs:complexType name="LpgLiqPorContratoConsRespType">
+		<xs:sequence>
+			<xs:element name="liqPorContratoCons" type="LpgLiqPorContratoConsReturnType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqPorContratoConsReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqPorContratoConsReturnType">
+		<xs:sequence>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coeRelacionados" type="LpgArrCoeType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgArrCoeType">
+		<xs:sequence>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajustePorContratoConsultarReq" type="LpgAjustePorContratoReqType"/>
+	<xs:element name="ajustePorContratoConsultarResp" type="LpgAjustePorContratoConsultarRespType"/>
+	<xs:complexType name="LpgAjustePorContratoReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjustePorContratoConsultarRespType">
+		<xs:sequence>
+			<xs:element name="ajusteContratoReturn" type="LpgAjusteConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ajusteXNroOrdenConsReq" type="LpgAjusteXNroOrdenConsReqType"/>
+	<xs:element name="ajusteXNroOrdenConsResp" type="LpgAjusteXNroOrdenRespType"/>
+	<xs:complexType name="LpgAjusteXNroOrdenConsReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteXNroOrdenRespType">
+		<xs:sequence>
+			<xs:element name="ajusteXNroOrdenConsReturn" type="LpgAjusteConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="liqSecundariaAuReq" type="LsgLiqReqType"/>
+	<xs:complexType name="LsgLiqReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="liqSecundariaBase" type="LsgLiqBaseType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="facturaPapel" type="LsgFacturaPapelBaseType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgLiqBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="numeroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codPuerto" type="LpgCodPuertoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="desPuertoLocalidad" type="LpgDesPuertoLocalidadType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cantidadTn" type="Numero_8_3_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroActVendedor" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="actuaCorredor" type="LpgSiNoType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Determina si interviene un corredor en
+								la
+								liquidacion. En caso afirmativo
+								informar cuit corredor, comision
+								corredor e ingresos brutos del corredor.
+								El ingreso bruto
+								informar solo en los
+								casos en donde el que liquida sea el
+								corredor. Si liquida el comprador no
+								informar.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="liquidaCorredor" type="LpgSiNoType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Determina si el que se encuentra
+								liquidando es
+								el corredor. En caso de
+								ser el corredor quien esta liquidando,
+								los datos que lo identifican deben
+								coincidir con los datos del
+								representado.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoCorredor" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaPrecioOperacion" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="precioRefTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="precioOperacion" type="Numero_9_3_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="alicIvaOperacion" type="LpgAlicuotaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="campaniaPPal" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Identifica la localidad de procedencia
+								del
+								grano a liquidar.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codProvincia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="deduccion" type="LsgDeduccionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="percepcion" type="LsgPercepcionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgPrecioOperacionType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:maxInclusive value="999999999.999"/>
+			<xs:minInclusive value="0.000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="liqSecundariaResp" type="LsgRespType"/>
+	<xs:complexType name="LsgLiqRespType">
+		<xs:sequence>
+			<xs:element name="liqSecundariaReturn" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="LsgReturnType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgReturnType">
+		<xs:sequence>
+			<xs:element name="autorizacion" type="LsgAutorizacionRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAutorizacionRespType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaLiquidacion" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subTotal" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="operacionConIva" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+								Codigo de operacion electronica
+								perteneciente
+								al ajuste.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalDeducciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="todalPercepciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="liquidacionSecXCoeConsReq"/>
+	<xs:complexType name="liquidacionSecXCoeConsResp"/>
+	<xs:element name="liqSecXCoeConsReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="liqSecXCoeConsResp" type="LpgLiqSecConsRespType"/>
+	<xs:complexType name="LpgLiqSecConsRespType">
+		<xs:sequence>
+			<xs:element name="liqSecConsReturn" type="LpgLiqSecConsReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqSecConsReturnType">
+		<xs:sequence>
+			<xs:element name="liquidacion" type="LpgLiqSecBaseType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="autorizacion" type="LpgLiqSecRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajuste" type="LpgAjusteLiqSecBaseType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqSecBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroActVendedor" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="actuaCorredor" type="LpgSiNoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="liquidaCorredor" type="LpgSiNoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoCorredor" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codigoGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoEnTn" type="LpgPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaPrecioOperacion" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codigoPuerto" type="LpgCodPuertoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="descripcionPuertoLocalidad" type="LpgDesPuertoLocalidadType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="PrecioReferenciaTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="precioOperacionTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="alicuotaIvaOperacion" type="LpgAlicuotaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codigoProvinciaOperacion" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codigoLocalidadOperacion" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="localidadEmision" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="numeroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiqSecRespType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaLiquidacion" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subtotal" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeIva" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="opracionConIva" type="LpgTotalPesoNetoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coeAjustado" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="numeroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAjusteLiqSecBaseType">
+		<xs:sequence>
+			<xs:element name="puntoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coeajustado" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoAjuste" type="LpgTipoAjusteType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="conceptoIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoIva10" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar10" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codigoLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codigoProvincia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgTipoAjusteType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="liqSecXNroOrdenConsReq"/>
+	<xs:complexType name="liqSecXNroOrdenConsResp"/>
+	<xs:complexType name="liqSecUltimoNroOrdenConsReq"/>
+	<xs:complexType name="liqSecUltimoNroOrdenConsResp"/>
+	<xs:complexType name="liqSecAnularReq"/>
+	<xs:element name="liqSecXNroOrdenConsReq" type="LpgLiqConsXNroOrdenReqType"/>
+	<xs:element name="liqSecXNroOrdenConsResp" type="LpgLiqSecConsRespType"/>
+	<xs:element name="liqSecUltNroOrdenConsReq" type="LpgLiqUltNroOrdenReqType"/>
+	<xs:element name="liqSecUltNroOrdenConsResp" type="LpgLiqUltNroOrdenRespType"/>
+	<xs:element name="liqSecAnularReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="liqSecAnularResp" type="LpgAnulacionRespType"/>
+	<xs:element name="liqSecAjustarReq" type="LpgAjusteLiqSecBaseType"/>
+	<xs:element name="liqSecAjustarResp" type="LpgLiqSecRespType"/>
+	<xs:element name="liqSecAsociarAContratoReq" type="LpgAsociarLiqAContratoReqType"/>
+	<xs:element name="liqSecAsociarAContratoResp" type="LpgAsociarLiqAContratoRespType"/>
+	<xs:element name="liqSecXContratoConsReq" type="LpgLiqPorContratoConsReqType"/>
+	<xs:element name="liqSecXContratoConsResp" type="LpgLiqSecXContratoConsRespType"/>
+	<xs:complexType name="LpgLiqSecXContratoConsRespType">
+		<xs:sequence>
+			<xs:element name="liqSecXContratoReturn" type="LpgLiqSecConsReturnType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lsgConsultarXCoeReq"/>
+	<xs:element name="lsgConsultarXCoeResp" type="LsgConsultaRespType"/>
+	<xs:element name="lsgConsultarXNroOrdenReq" type="LpgLiqConsXNroOrdenReqType"/>
+	<xs:element name="lsgConsultarXNroOrdenResp" type="LsgConsultaRespType"/>
+	<xs:element name="lsgConsultarUltimoNroOrdenReq" type="LpgLiqUltNroOrdenReqType"/>
+	<xs:element name="lsgConsultarUltimoNroOrdenResp" type="LpgLiqUltNroOrdenRespType"/>
+	<xs:element name="lsgAnularReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="lsgAnularResp" type="LpgAnulacionRespType"/>
+	<xs:element name="lsgAjustarXCoeReq" type="LsgAjustarXCoeReqType"/>
+	<xs:element name="lsgAjustarXCoeResp" type="LsgAjustarXCoeContratoRespType"/>
+	<xs:element name="lsgAsociarAContratoReq" type="LpgAsociarLiqAContratoReqType"/>
+	<xs:element name="lsgAsociarAContratoResp" type="LsgConsultaRespType"/>
+	<xs:element name="lsgConsultarXContratoReq" type="LpgLiqPorContratoConsReqType"/>
+	<xs:element name="lsgConsultarXContratoResp" type="LpgLiqPorContratoConsRespType"/>
+	<xs:element name="lsgConsultarXCoeReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:complexType name="LsgConsultaRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="LsgConsultaReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgConsultaReturnType">
+		<xs:sequence>
+			<xs:element name="liquidaciones" type="LsgLiquidacionesType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="pdf" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroActVendedor" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="actuaCorredor" type="LpgSiNoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="liquidaCorredor" type="LpgSiNoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoCorredor" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoEnTn" type="Numero_8_3_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaPrecioOperacion" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codPuerto" type="LpgCodPuertoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="descripcionPuertoLocalidad" type="LpgDesPuertoLocalidadType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="otraLocalidad" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioReferenciaTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="precioOperacionTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="alicuotaIvaOperacion" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="deduccion" type="LsgDeduccionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="percepcion" type="LsgPercepcionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="totalDeducciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="todalPercepciones" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codProvinciaOperacion" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codLocalidadOperacion" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="localidadEmision" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="estado" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgResp2Type">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaLiquidacion" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subtotal" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeIva" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="operacionConIva" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coeAjustado" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAjusteBaseReqType">
+		<xs:sequence>
+			<xs:element name="conceptoIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoIva10" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar10" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="percepcion" type="LsgPercepcionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAjusteBaseReqType01">
+		<xs:sequence>
+			<xs:element name="conceptoIva0" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar0" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoIva10" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar10" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="conceptoIva21" type="LpgConceptoImporteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeAjustar21" type="LpgImporte11_2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAjustarXCoeReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codProvincia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteCredito" type="LsgAjusteBaseReqType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajusteDebito" type="LsgAjusteBaseReqType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAjustarXCoeContratoRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="LsgAjustarXCoeContratoReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgConsultaXContratoRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="LsgConsultaReturnType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgConsultaXContratoReturnType">
+		<xs:sequence>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAjustarReturnType">
+		<xs:sequence>
+			<xs:element name="autorizacion" type="LsgResp2Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="autCertificadoDepositoReq" type="xs:string"/>
+	<xs:element name="autCertificadoDepositoResp" type="xs:string"/>
+	<xs:element name="autCertificadoRetiroTransfReq" type="xs:string"/>
+	<xs:element name="autCertificadoRetiroTransfResp" type="xs:string"/>
+	<xs:element name="autCertificadoPreexistenteReq" type="xs:string"/>
+	<xs:element name="cgAutorizarReq" type="CgAutorizarReqType"/>
+	<xs:element name="cgTiposTitularGranoReq" type="xs:string"/>
+	<xs:element name="cgTiposTitularGranoResp" type="xs:string"/>
+	<xs:simpleType name="CgTipoTitularGranoType">
+		<xs:annotation>
+			<xs:documentation>P: Propio.
+						T: Tercero.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="T"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CgAutorizarReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cabecera" type="CgCabeceraAutorizarType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="primaria" type="CgAutorizarPrimariaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retiroTransferencia" type="CgAutorizarRetiroTransferenciaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="preexistente" type="CgAutorizarPreexistenteType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgAutorizarRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="CgAutorizarReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgAutorizarReturnType">
+		<xs:sequence>
+			<xs:element name="autorizacion" type="CgAutorizacionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Numero_6_0_Type">
+		<xs:annotation>
+			<xs:documentation>Campo numerico de 6 digitos sin decimales.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CgCTGType">
+		<xs:sequence>
+			<xs:element name="nroCTG" type="Numero_8_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroCartaDePorte" type="Numero_9_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoConfirmadoDefinitivo" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="porcentajeSecadoHumedad" type="LpgPorcentajeType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeSecado" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoMermaSecado" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tarifaSecado" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeZarandeo" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoMermaZarandeo" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tarifaZarandeo" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Numero_1_0_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico de 1 digitos sin decimales.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_8_0_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico de 8 digitos sin decimales.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="99999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_9_0_Type">
+		<xs:annotation>
+			<xs:documentation>Campo numerico de 9 digitos sin decimales.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_14_0_Type">
+		<xs:annotation>
+			<xs:documentation>Campo numerico de 8 digitos sin decimales.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="99999999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_10_0_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico de 10 digitos sin decimales.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="9999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_12_0_Type">
+		<xs:annotation>
+			<xs:documentation>Campo numerico de 12 digitos sin decimales.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minExclusive value="0"/>
+			<xs:maxInclusive value="999999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String_20_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo alfanumerico de 20 caracteres maximo.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String_50_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo alfanumerico de 50 caracteres maximo.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String_400_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo alfanumerico de 400 caracteres maximo.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="400"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_8_2_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 8 digitos y 2
+						decimales
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minExclusive value="0.00"/>
+			<xs:maxInclusive value="99999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_8_3_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 8 digitos y 3
+						decimales
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:minExclusive value="0.000"/>
+			<xs:maxInclusive value="99999999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_9_3_Type">
+		<xs:annotation>
+			<xs:documentation>Campo numerico de 9 digitos y 3 decimales.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minExclusive value="0.000"/>
+			<xs:maxInclusive value="999999999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_3_2_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 3 digitos y 2
+						decimales
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minExclusive value="0.00"/>
+			<xs:maxInclusive value="999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_6_2_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 6 digitos y 2
+						decimales
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minExclusive value="0.00"/>
+			<xs:maxInclusive value="999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_6_3_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 6 digitos y 3
+						decimales
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:minExclusive value="0.000"/>
+			<xs:maxInclusive value="999999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_5_3_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 5 digitos y 3
+						decimales
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:minExclusive value="0.000"/>
+			<xs:maxInclusive value="99999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numero_4_3_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 4 digitos y 3
+						decimales
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:minExclusive value="0.000"/>
+			<xs:maxInclusive value="9999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NumeroZ_3_2_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 3 digitos y 2
+						decimales (0 incluido)
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0.00"/>
+			<xs:maxInclusive value="999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NumeroZ_4_3_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 4 digitos y 3
+						decimales (0 incluido)
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:minInclusive value="0.00"/>
+			<xs:maxInclusive value="9999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NumeroZ_5_3_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 5 digitos y 3
+						decimales (0 incluido)
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+			<xs:minInclusive value="0.00"/>
+			<xs:maxInclusive value="99999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NumeroZ_8_2_Type">
+		<xs:annotation>
+			<xs:documentation>
+						Campo numerico decimal de 8 digitos y 2
+						decimales (0 incluido)
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0.00"/>
+			<xs:maxInclusive value="99999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CgDetalleMuestraAnalisisType">
+		<xs:sequence>
+			<xs:element name="descripcionRubro" type="String_400_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoRubro" type="CgTipoRubroType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="porcentaje" type="LpgPorcentajeType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="valor" type="NumeroZ_3_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgCertificadoDepositoType">
+		<xs:sequence>
+			<xs:element name="coeCertificadoDeposito" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNeto" type="LpgPesoNetoType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="lsgAutorizarReq" type="LsgLiqReqType"/>
+	<xs:element name="lsgAutorizarResp" type="LsgRespType"/>
+	<xs:simpleType name="CgTipoRubroType">
+		<xs:annotation>
+			<xs:documentation>B: Bonificacion.
+						R: Rebaja.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="R"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="cgConsultarCtgReq" type="xs:string"/>
+	<xs:element name="cgConsultarCtgResp" type="xs:string"/>
+	<xs:element name="cgConsultarCertificadosConSaldoDisponibleReq" type="xs:string"/>
+	<xs:element name="cgConsultarCertificadosConSaldoDisponibleResp" type="xs:string"/>
+	<xs:element name="cgConsultarCertConSaldoDisponibleReq" type="xs:string"/>
+	<xs:element name="cgConsultarCertConSaldoDisponibleResp" type="xs:string"/>
+	<xs:element name="cgBuscarCtgReq" type="CgBuscarCtgReqType"/>
+	<xs:element name="cgBuscarCtgResp" type="CgBuscarCtgRespType"/>
+	<xs:element name="cgBuscarCertConSaldoDisponibleReq" type="CgBuscarCertConSaldoDisponibleReqType"/>
+	<xs:element name="cgBuscarCertConSaldoDisponibleResp" type="CgBuscarCertConSaldoDisponibleRespType"/>
+	<xs:complexType name="CgBuscarCtgReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoCertificado" type="CgTipoCertificadoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitDepositante" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroPlanta" type="Numero_6_0_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroCtg" type="Numero_8_0_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="tipoCtg" type="CgTipoCtgType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroCartaPorte" type="Numero_9_0_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaConfirmacionCtgDes" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaConfirmacionCtgHas" type="xs:date" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CgTipoCtgType">
+		<xs:annotation>
+			<xs:documentation>CTG: Codigo de trazabilidad de granos.
+						FC: Flete
+						corto.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="3"/>
+			<xs:enumeration value="CTG"/>
+			<xs:enumeration value="FC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CgBuscarCertConSaldoDisponibleReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitDepositante" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaEmisionDes" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaEmisionHas" type="xs:date" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgBuscarCtgRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="CgBuscarCtgReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgBuscarCtgReturnType">
+		<xs:sequence>
+			<xs:element name="ctg" type="CgCartaDePorteType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgBuscarCertConSaldoDisponibleRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="CgBuscarCertConSaldoDisponibleReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgBuscarCertConSaldoDisponibleReturnType">
+		<xs:sequence>
+			<xs:element name="certificado" type="CgCertificadoType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgCartaDePorteType">
+		<xs:sequence>
+			<xs:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroPlanta" type="Numero_6_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroCtg" type="Numero_8_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoCtg" type="CgTipoCtgType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroCartaPorte" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="kilosConfirmados" type="LpgPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaConfirmacionCtg" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitRemitenteComercial" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cuitLiquida" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCertifica" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgCertificadoType">
+		<xs:sequence>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoCertificado" type="CgTipoCertificadoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitDepositante" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitDepositario" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroPlanta" type="Numero_6_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="kilosDisponibles" type="LpgPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="cgConfirmarAnulacionReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="cgConfirmarAnulacionResp" type="CgSolicitarAnulacionRespType"/>
+	<xs:element name="cgSolicitarAnulacionReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="cgSolicitarAnulacionResp" type="CgSolicitarAnulacionRespType"/>
+	<xs:element name="cgConsultarUltimoNroOrdenReq" type="LpgLiqUltNroOrdenReqType"/>
+	<xs:element name="cgConsultarUltimoNroOrdenResp" type="LpgLiqUltNroOrdenRespType"/>
+	<xs:complexType name="CgSolicitarAnulacionRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="CgSolicitarAnulacionReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgSolicitarAnulacionReturnType">
+		<xs:sequence>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="estadoCertificado" type="LpgEstadoCertificadoType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgEstadoCertificadoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AC"/>
+			<xs:enumeration value="PA"/>
+			<xs:enumeration value="AN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="cgConsultarXCoeReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="cgConsultarXCoeResp" type="CgConsultarRespType"/>
+	<xs:complexType name="CgConsultarRespType">
+		<xs:sequence>
+			<xs:element name="oReturn" type="CgConsultarReturnType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgConsultarReturnType">
+		<xs:sequence>
+			<xs:element name="autorizacion" type="CgAutorizacionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cabecera" type="CgCabeceraAutorizarType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="primaria" type="CgAutorizarPrimariaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="retiroTransferencia" type="CgAutorizarRetiroTransferenciaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="preexistente" type="CgAutorizarPreexistenteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroPlanta" type="Numero_6_0_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cuitDepositario" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="alicuotaIVA" type="LpgAlicuotaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cuitRemitenteComercial" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codProvincia" type="LpgCodProvProcedenciaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="pdf" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgCabeceraAutorizarType">
+		<xs:annotation>
+			<xs:documentation>Posee datos comunes para todos los certificados
+						(ver CgTipoCertificadoType)...Se usa en los request para la
+						autorizacion y en el response para las consultas.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tipoCertificado" type="CgTipoCertificadoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoDepositario" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="titularGrano" type="CgTipoTitularGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitDepositante" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoDepositante" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="campania" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CgTipoCertificadoType">
+		<xs:annotation>
+			<xs:documentation>P:Primaria,R:Retiro,T:Transferencia,E:Preexistente.
+					</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="R"/>
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="E"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CgAutorizarPrimariaType">
+		<xs:annotation>
+			<xs:documentation>Datos propios para la autorizacion de
+						certificados de tipo P y D.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nroActDepositario" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ctg" type="CgCTGType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="descripcionTipoGrano" type="String_20_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="montoAlmacenaje" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="montoAcarreo" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="montoGastosGenerales" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="montoZarandeo" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="porcentajeSecadoDe" type="LpgPorcentajeType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="porcentajeSecadoA" type="LpgPorcentajeType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="montoSecado" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="montoPorCadaPuntoExceso" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="montoOtros" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calidad" type="CgCalidadType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="pesoNetoMermaVolatil" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="serviciosFormaDePago" type="String_20_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="serviciosOtros" type="NumeroZ_8_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgAutorizarRetiroTransferenciaType">
+		<xs:sequence>
+			<xs:element name="certificadoDeposito" type="CgCertificadoDepositoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroActDepositario" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitReceptor" type="LpgCuitType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Obligatorio para Transferencia.
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nroCartaPorteAUtilizar" type="Numero_9_0_Type" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Obligatorio para Retiro.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgAutorizarPreexistenteType">
+		<xs:sequence>
+			<xs:element name="nroPlanta" type="Numero_6_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoCertificadoDepositoPreexistente" type="Numero_1_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroCertificadoDepositoPreexistente" type="Numero_12_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cacCertificadoDepositoPreexistente" type="Numero_14_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaEmisionCertificadoDepositoPreexistente" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNeto" type="Numero_8_3_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="cgAutorizarResp" type="CgAutorizarRespType"/>
+	<xs:element name="CgConsultarXNroOrdenReq" type="LpgLiqConsXNroOrdenReqType"/>
+	<xs:element name="CgConsultarXNroOrdenResp" type="CgConsultarRespType"/>
+	<xs:element name="CgConsultarTiposCertificacionReq" type="xs:string"/>
+	<xs:element name="cgModificarCuitCorredorReq" type="CgModificarCuitCorredorReqType"/>
+	<xs:element name="cgModificarCuitCorredorResp" type="CgConsultarRespType"/>
+	<xs:complexType name="CgModificarCuitCorredorReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LpgPorcentajeType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0.00"/>
+			<xs:maxInclusive value="100.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CgAutorizacionType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="estado" type="LpgEstadoCertificadoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaCertificacion" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesosResumen" type="CgPesosResumenType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="serviciosResumen" type="CgServiciosResumenType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="planta" type="CgPlantaType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgPesosResumenType">
+		<xs:sequence>
+			<xs:element name="pesoBrutoCertificado" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoMermaVolatil" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoMermaSecado" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoMermaZarandeo" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoCertificado" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgServiciosResumenType">
+		<xs:sequence>
+			<xs:element name="servicioSecado" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="servicioZarandeo" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="servicioOtros" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="servicioGastosGenerales" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importeIVA" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="servicioTotal" type="NumeroZ_8_2_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgPercepcionType">
+		<xs:sequence>
+			<xs:element name="detalleAclaratoria" type="String_50_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="baseCalculo" type="Numero_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="alicuota" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="lsgAjustarXContratoReq" type="LsgAjustarXContratoReqType"/>
+	<xs:element name="lsgAjustarXContratoResp" type="LsgAjustarXCoeContratoRespType"/>
+	<xs:complexType name="LsgAjustarXContratoReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codLocalidad" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codProvincia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ajusteCredito" type="LsgAjusteBaseReqType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajusteDebito" type="LsgAjusteBaseReqType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAjustarXCoeContratoReturnType">
+		<xs:sequence>
+			<xs:element name="errores" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="erroresFormato" type="LpgArrErrorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="eventos" type="LpgArrEventoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroContrato" type="LpgNumeroContratoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coeAjustado" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajusteCredito" type="LsgAjusteCredDebRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajusteDebito" type="LsgAjusteCredDebRespType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalesUnificados" type="LsgTotalesUnificadosType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="estado" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAjusteCredDebRespType">
+		<xs:sequence>
+			<xs:element name="nroOpComercial" type="LpgNroOpComercialType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaLiquidacion" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="precioOperacion" type="LpgImporte_17_3_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subTotal" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeIVA" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalPesoNeto" type="LpgTotalPesoNetoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importe" type="LpgImportesNetoAjustadoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="percepcion" type="LsgPercepcionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="totalPercepcion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalNetoAPagar" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalPagoSegunCondicion" type="LpgImporte_17_2_Type" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgTotalesUnificadosType">
+		<xs:sequence>
+			<xs:element name="subtotalCredDeb" type="LpgImporte11_2LibreType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subtotalGeneral" type="LpgImporte11_2LibreType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="iva105" type="LpgImporte11_2LibreType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="iva21" type="LpgImporte11_2LibreType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalBasePercepciones" type="LpgImporte11_2LibreType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importeNeto" type="LpgImporte11_2LibreType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="pagoSegunCondicion" type="LpgImporte11_2LibreType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgLiquidacionesType">
+		<xs:sequence>
+			<xs:element name="liquidacion" type="LsgBaseType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="autorizacion" type="LsgResp2Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ajuste" type="LsgAjusteBaseRespType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgPlantaType">
+		<xs:sequence>
+			<xs:element name="nroPlanta" type="Numero_6_0_Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cuitTitularPlanta" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="razonSocialTitularPlanta" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgDeduccionType">
+		<xs:sequence>
+			<xs:element name="detalleAclaratoria" type="String_50_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="baseCalculo" type="Numero_8_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="alicuotaIVA" type="LpgAlicuotaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LsgAjusteBaseRespType">
+		<xs:sequence>
+			<xs:element name="tipoAjuste" type="LpgTipoAjusteType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="req" type="LsgAjusteBaseReqType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coeAjustado" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="totalesUnificados" type="LsgTotalesUnificadosType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="estado" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LsgGradoValorType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:maxInclusive value="1.99"/>
+			<xs:minExclusive value="0.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="CgInformarCalidadReq" type="CgInformarCalidadReqType"/>
+	<xs:element name="CgInformarCalidadResp" type="CgConsultarRespType"/>
+	<xs:complexType name="CgInformarCalidadReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="coe" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calidad" type="CgCalidadType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CgCalidadType">
+		<xs:sequence>
+			<xs:element name="analisisMuestra" type="Numero_10_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroBoletin" type="Numero_10_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codGrado" type="LpgGradoCodigoType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Valores posibles: G1,G2,G3,FG,F1,F2,F3. Si el valor es G1,G2 o G3 valorGrado no debe informarse. Caso contrario es obligatorio.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valorGrado" type="LsgGradoValorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="valorContProteico" type="NumeroZ_3_2_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="valorFactor" type="LpgFactorEntType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="detalleMuestraAnalisis" type="CgDetalleMuestraAnalisisType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LpgAutorizarAnticipoReq" type="LpgAutorizarAnticipoReqType"/>
+	<xs:element name="LpgAutorizarAnticipoResp" type="LpgLiqRespType"/>
+	<xs:complexType name="LpgAutorizarAnticipoReqType">
+		<xs:sequence>
+			<xs:element name="auth" type="LpgAuthType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="anticipo" type="LpgAutorizarAnticipoType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgAutorizarAnticipoType">
+		<xs:sequence>
+			<xs:element name="liquidacion" type="LpgLiquidacionAnticipoBaseType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="retenciones" type="LpgArrRetencionType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LpgLiquidacionAnticipoBaseType">
+		<xs:sequence>
+			<xs:element name="ptoEmision" type="LpgPtoEmision" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroOrden" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitComprador" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroActComprador" type="LpgActividadType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoComprador" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codTipoOperacion" type="LpgCodTipoOperacionType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codPuerto" type="LpgCodPuertoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="descPuertoLocalidad" type="LpgDesPuertoLocalidadType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codGrano" type="LpgCodigoGranoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pesoNetoSinCertificado" type="LpgPesoNetoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitVendedor" type="LpgCuitType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoVendedor" type="LpgIbType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="actuaCorredor" type="LpgSiNoType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="liquidaCorredor" type="LpgSiNoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cuitCorredor" type="LpgCuitType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="comisionCorredor" type="LpgPorcType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="nroIngBrutoCorredor" type="LpgIbType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="fechaPrecioOperacion" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="precioRefTn" type="LpgPrecioRefTnType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="alicIvaOperacion" type="LpgAlicuotaType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="campaniaPpal" type="LpgCampaniaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codLocProcedencia" type="LpgCodLocProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codProvProcedencia" type="LpgCodProvProcedenciaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="datosAdicionales" type="LpgDatosAdicionalesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="opcionales" type="LpgArrOpcionalType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CgConsultarXCoePdfReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="CgConsultarXCoePdfResp" type="xs:string"/>
+	<xs:element name="LsgConsultarXCoePdfReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:element name="LsgConsultarXCoePdfResp" type="xs:string"/>
+	<xs:element name="LpgConsultarXCoePdfResp" type="xs:string"/>
+	<xs:element name="LpgConsultarXCoePdfReq" type="LpgLiqConsXCoeReqType"/>
+	<xs:complexType name="LsgFacturaPapelBaseType">
+		<xs:sequence>
+			<xs:element name="nroCAI" type="Numero_14_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nroFacturaPapel" type="Numero_12_0_Type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fechaFactura" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoComprobante" type="LsgTipoComprobanteFacturaType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LsgTipoComprobanteFacturaType">
+		<xs:annotation>
+			<xs:documentation>
+            			1: Factura A 34: Cbtes. A del Anexo I, Apartado
+            			A,inc.f),R.G.Nro. 1415. 51: Factura M. 63:
+            			Liquidacion A. 39: otros Cbtes A, que cumplan con RG N1415.
+            		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="63"/>
+			<xs:enumeration value="39"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
